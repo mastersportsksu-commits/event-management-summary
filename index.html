@@ -3,1067 +3,1340 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ملخص إدارة الفعاليات الرياضية والترويحية</title>
+<title>مرجع إدارة الفعاليات الرياضية والترويحية — عبدالعزيز الفهد</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f4f8; color: #1a202c; font-size: 15px; line-height: 1.7; }
-  
-  .header { background: linear-gradient(135deg, #1a5276, #2e86ab); color: white; padding: 30px 40px; text-align: center; }
-  .header h1 { font-size: 28px; margin-bottom: 8px; }
-  .header p { opacity: 0.85; font-size: 14px; }
-  
-  .nav { background: #1a5276; padding: 10px 20px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; position: sticky; top: 0; z-index: 100; }
-  .nav a { color: white; text-decoration: none; padding: 6px 14px; border-radius: 20px; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
-  .nav a:hover { background: rgba(255,255,255,0.2); }
-  
-  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-  
-  .section { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .section h2 { font-size: 20px; color: #1a5276; border-bottom: 3px solid #2e86ab; padding-bottom: 10px; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
-  .section h3 { font-size: 17px; color: #2e86ab; margin: 18px 0 10px; }
-  
-  .priority-high { border-right: 5px solid #e74c3c; padding-right: 12px; background: #fdf2f2; border-radius: 6px; padding: 12px 12px 12px 16px; margin: 8px 0; }
-  .priority-med { border-right: 5px solid #f39c12; padding-right: 12px; background: #fefaf0; border-radius: 6px; padding: 12px 12px 12px 16px; margin: 8px 0; }
-  .priority-low { border-right: 5px solid #27ae60; padding-right: 12px; background: #f0fdf4; border-radius: 6px; padding: 12px 12px 12px 16px; margin: 8px 0; }
-  
-  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-right: 6px; }
-  .badge-red { background: #fce4e4; color: #c0392b; }
-  .badge-orange { background: #fef3e2; color: #d35400; }
-  .badge-green { background: #e8f8f5; color: #1a8a6e; }
-  
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  
-  @media (max-width: 700px) {
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .nav { display: none; }
-  }
-  
-  .card { background: #f8faff; border: 1px solid #d0e2f7; border-radius: 10px; padding: 16px; }
-  .card h4 { color: #1a5276; font-size: 15px; margin-bottom: 8px; }
-  .card p, .card ul { font-size: 14px; color: #444; }
-  .card ul { padding-right: 18px; }
-  .card ul li { margin: 4px 0; }
-  
-  .phase-box { background: #1a5276; color: white; border-radius: 10px; padding: 15px; text-align: center; position: relative; }
-  .phase-box .num { font-size: 28px; font-weight: bold; opacity: 0.4; }
-  .phase-box .title { font-size: 15px; font-weight: bold; margin: 4px 0; }
-  .phase-box .sub { font-size: 12px; opacity: 0.8; }
-  
-  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0; }
-  th { background: #1a5276; color: white; padding: 10px 14px; text-align: right; }
-  td { padding: 9px 14px; border-bottom: 1px solid #e8ecf0; }
-  tr:nth-child(even) { background: #f7f9fc; }
-  tr:hover { background: #eef4fb; }
-  
-  .mcq { background: #f8faff; border: 1px solid #c8dff4; border-radius: 10px; padding: 16px; margin: 12px 0; }
-  .mcq .q { font-weight: bold; color: #1a5276; margin-bottom: 10px; font-size: 15px; }
-  .mcq .opt { padding: 5px 10px; margin: 3px 0; border-radius: 5px; font-size: 14px; }
-  .mcq .correct { background: #d5f5e3; color: #1e8449; font-weight: bold; }
-  .mcq .wrong { background: #fdf2f2; color: #888; }
-  
-  .tf { background: #fff; border: 1px solid #e0e7ef; border-radius: 8px; padding: 14px; margin: 10px 0; }
-  .tf .q { font-weight: bold; margin-bottom: 6px; }
-  .tf .ans { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 13px; font-weight: bold; }
-  .ans-true { background: #d5f5e3; color: #1e8449; }
-  .ans-false { background: #fde8e8; color: #c0392b; }
-  
-  .essay { background: #fffbf0; border: 1px solid #f0d870; border-radius: 10px; padding: 16px; margin: 12px 0; }
-  .essay .q { font-weight: bold; color: #8a6d1e; margin-bottom: 8px; }
-  .essay .a { font-size: 14px; color: #444; background: white; border-radius: 6px; padding: 12px; border: 1px solid #f0e0b0; }
-  
-  .points-list { counter-reset: points; }
-  .points-list li { counter-increment: points; list-style: none; padding: 8px 10px; margin: 6px 0; background: #f0f7ff; border-radius: 7px; border-right: 4px solid #2e86ab; position: relative; }
-  .points-list li::before { content: counter(points); position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #2e86ab; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
-  
-  .cheatsheet { background: linear-gradient(135deg, #1a5276, #2e86ab); color: white; border-radius: 12px; padding: 25px; }
-  .cheatsheet h3 { color: #aed6f1; margin-bottom: 8px; font-size: 15px; }
-  .cheatsheet ul { padding-right: 18px; }
-  .cheatsheet ul li { margin: 4px 0; font-size: 13px; opacity: 0.9; }
-  .cheatsheet .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 700px) { .cheatsheet .cs-grid { grid-template-columns: 1fr; } }
-  
-  .top-questions { counter-reset: tq; }
-  .top-questions .tq-item { counter-increment: tq; background: white; border: 1px solid #d0e2f7; border-radius: 10px; padding: 16px; margin: 12px 0; }
-  .top-questions .tq-item::before { content: "سؤال " counter(tq); display: block; font-weight: bold; color: #1a5276; margin-bottom: 6px; font-size: 13px; }
-  .tq-q { font-weight: bold; margin-bottom: 8px; color: #222; }
-  .tq-a { font-size: 14px; color: #444; background: #f0f7ff; border-radius: 6px; padding: 10px 12px; }
-  
-  .emoji-icon { font-size: 20px; }
-  
-  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #ccc; border-radius: 10px; overflow: hidden; }
-  .swot-box { padding: 16px; }
-  .swot-s { background: #d5f5e3; }
-  .swot-w { background: #fde8e8; }
-  .swot-o { background: #d6eaf8; }
-  .swot-t { background: #fef9e7; }
-  .swot-box h4 { margin-bottom: 8px; font-size: 14px; }
-  .swot-box ul { font-size: 13px; padding-right: 16px; }
-  
-  .zones-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  @media (max-width: 700px) { .zones-grid { grid-template-columns: 1fr 1fr; } }
-  .zone-card { background: #1a5276; color: white; border-radius: 10px; padding: 14px; text-align: center; }
-  .zone-card .zone-num { font-size: 24px; font-weight: bold; opacity: 0.4; }
-  .zone-card .zone-name { font-size: 14px; font-weight: bold; margin: 4px 0; }
-  .zone-card .zone-desc { font-size: 12px; opacity: 0.75; }
-  
-  hr { border: none; border-top: 2px dashed #d0e2f7; margin: 20px 0; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f0f4f8;color:#1a202c;font-size:15px;line-height:1.8;}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,#1a5276,#2e86ab);color:white;padding:35px 40px;text-align:center;}
+.site-header h1{font-size:28px;margin-bottom:8px;}
+.site-header .subtitle{opacity:.85;font-size:14px;margin:4px 0;}
+.header-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:4px 16px;border-radius:20px;font-size:13px;margin-bottom:10px;}
+.meta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:12px;}
+.meta-chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:3px 12px;border-radius:16px;font-size:12px;}
+
+/* NAV */
+nav{background:#1a5276;padding:10px 20px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+nav a{color:white;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:13px;transition:background .2s;white-space:nowrap;}
+nav a:hover{background:rgba(255,255,255,.2);}
+
+/* LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:20px;}
+
+/* SECTIONS */
+.section{background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:20px;overflow:hidden;}
+.section-header{background:linear-gradient(135deg,#1a5276,#2e86ab);color:white;padding:16px 25px;display:flex;align-items:center;gap:10px;}
+.section-header .icon{font-size:1.4rem;}
+.section-header h2{font-size:20px;color:white;}
+.section-body{padding:20px 25px;}
+
+/* SUBSECTIONS */
+.subsec{margin-bottom:20px;}
+.subsec-title{font-size:17px;color:#2e86ab;border-bottom:2px solid #d0e2f7;padding-bottom:8px;margin-bottom:12px;font-weight:bold;}
+.subsec-title.red{color:#c0392b;border-color:#fce4e4;}
+.subsec-title.green{color:#1a8a6e;border-color:#c8f0e8;}
+
+/* DEFINITION BOX */
+.def-box{background:linear-gradient(135deg,#1a5276,#1d6fa3);color:white;border-radius:10px;padding:14px 18px;margin-bottom:12px;}
+.def-box .def-src{font-size:12px;color:#aed6f1;margin-top:6px;opacity:.85;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:12px;}
+.card{background:#f8faff;border:1px solid #d0e2f7;border-radius:10px;padding:16px;}
+.card h4{color:#1a5276;font-size:15px;margin-bottom:8px;}
+.card p,.card li{font-size:14px;color:#444;}
+.card ul{padding-right:16px;}
+
+/* HIGHLIGHTS */
+.highlight{background:#f8faff;border:1px solid #c8dff4;border-right:5px solid #2e86ab;border-radius:8px;padding:12px 16px;margin:8px 0;}
+.highlight.blue{background:#eaf4fb;border-color:#2e86ab;border-right-color:#1a5276;}
+.highlight.green{background:#f0fdf4;border-color:#27ae60;border-right-color:#1a8a6e;}
+.highlight.red{background:#fdf2f2;border-color:#e74c3c;border-right-color:#c0392b;}
+.highlight.gold{background:#fffbf0;border-color:#f0d870;border-right-color:#d4a017;}
+
+/* PRIORITY BOXES */
+.priority-high{border-right:5px solid #e74c3c;background:#fdf2f2;border-radius:8px;padding:12px 16px;margin:8px 0;}
+.priority-med{border-right:5px solid #f39c12;background:#fefaf0;border-radius:8px;padding:12px 16px;margin:8px 0;}
+.priority-low{border-right:5px solid #27ae60;background:#f0fdf4;border-radius:8px;padding:12px 16px;margin:8px 0;}
+
+/* BADGE */
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold;margin:.1rem;}
+.badge-red{background:#fce4e4;color:#c0392b;}
+.badge-blue{background:#d0e9f7;color:#1a5276;}
+.badge-green{background:#e8f8f5;color:#1a8a6e;}
+.badge-gold{background:#fef3e2;color:#b7770d;}
+.badge-navy{background:#1a5276;color:white;}
+
+/* NUM HIGHLIGHT */
+.num-highlight{display:inline-block;background:#1a5276;color:white;font-weight:700;padding:1px 8px;border-radius:5px;font-size:.9em;}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;}
+th{background:#1a5276;color:white;padding:10px 14px;text-align:right;}
+td{padding:9px 14px;border-bottom:1px solid #e8ecf0;font-size:14px;}
+tr:nth-child(even){background:#f7f9fc;}
+tr:hover{background:#eef4fb;}
+
+/* PHASE BOXES */
+.ph{background:#1a5276;color:white;border-radius:10px;padding:15px;text-align:center;}
+.ph .n{font-size:28px;font-weight:bold;opacity:.3;}
+.ph .t{font-size:15px;font-weight:bold;margin:4px 0;}
+.ph .s{font-size:12px;opacity:.8;}
+
+/* FLOW */
+.flow{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.8rem 0;}
+.flow-step{background:#1a5276;color:white;padding:6px 14px;border-radius:8px;font-size:14px;font-weight:600;}
+.flow-arrow{color:#2e86ab;font-size:1.2rem;font-weight:bold;}
+
+/* TAGS */
+.tag{display:inline-block;background:#f0f4f8;color:#1a5276;border:1px solid #d0e2f7;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;margin:.15rem;}
+.tag.gold{background:#fef3e2;color:#b7770d;border-color:#f0d870;}
+.tag.navy{background:#1a5276;color:white;border:none;}
+.tag.green{background:#e8f8f5;color:#1a8a6e;border-color:#a9dfcc;}
+
+/* STEPS */
+.steps{padding-right:4px;}
+.step{display:flex;gap:14px;margin-bottom:12px;align-items:flex-start;}
+.step-num{background:#2e86ab;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;margin-top:2px;}
+.step-body h4{font-size:14px;font-weight:700;color:#1a5276;margin-bottom:3px;}
+.step-body p{font-size:13px;color:#555;}
+
+/* STYLED LISTS */
+.styled-list{list-style:none;padding:0;}
+.styled-list li{padding:7px 10px;border-bottom:1px dashed #e0e7ef;font-size:14px;display:flex;align-items:flex-start;gap:8px;}
+.styled-list li::before{content:'◆';color:#2e86ab;font-size:10px;margin-top:5px;flex-shrink:0;}
+.styled-list.red li::before{color:#e74c3c;}
+.styled-list.green li::before{color:#27ae60;}
+.styled-list.num{counter-reset:li;}
+.styled-list.num li::before{counter-increment:li;content:counter(li);background:#1a5276;color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+
+/* MCQ */
+.mcq-item{background:#f8faff;border:1px solid #c8dff4;border-radius:10px;padding:16px;margin-bottom:10px;border-right:4px solid #2e86ab;}
+.mcq-q{font-weight:bold;color:#1a5276;margin-bottom:10px;font-size:14px;}
+.mcq-options{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.mcq-opt{font-size:13px;padding:6px 10px;border-radius:6px;background:white;border:1px solid #d0e2f7;cursor:pointer;transition:all .18s;}
+.mcq-opt:hover{background:#1a5276;color:white;}
+.mcq-opt.correct{background:#d5f5e3;border-color:#27ae60;color:#1e8449;font-weight:bold;}
+.mcq-opt.wrong{background:#fdf2f2;border-color:#e74c3c;color:#888;}
+.mcq-opt.reveal-correct{background:#d5f5e3;border-color:#27ae60;color:#1e8449;font-weight:bold;}
+.mcq-reveal{font-size:13px;color:#1e8449;font-weight:600;margin-top:6px;display:none;}
+.mcq-reveal.show{display:block;}
+
+/* TF */
+.tf-item{background:white;border:1px solid #e0e7ef;border-radius:8px;padding:14px;margin-bottom:8px;}
+.tf-q{font-weight:bold;margin-bottom:8px;font-size:14px;color:#1a202c;}
+.tf-btns{display:flex;gap:8px;}
+.tf-btn{padding:5px 18px;border-radius:8px;border:none;font-family:'Segoe UI',Tahoma,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.tf-btn.t{background:#d5f5e3;color:#1e8449;border:1px solid #27ae60;}
+.tf-btn.t:hover{background:#27ae60;color:white;}
+.tf-btn.f{background:#fde8e8;color:#c0392b;border:1px solid #e74c3c;}
+.tf-btn.f:hover{background:#e74c3c;color:white;}
+.tf-result{font-size:13px;font-weight:600;display:none;margin-top:6px;}
+.tf-result.show{display:block;}
+
+/* ESSAY */
+.essay-item{background:#fffbf0;border:1px solid #f0d870;border-radius:10px;padding:14px;margin-bottom:10px;}
+.essay-q{font-weight:bold;color:#8a6d1e;margin-bottom:8px;font-size:14px;}
+
+/* LOJNEH */
+.lj{background:#eaf4fb;border:1px solid #aed6f1;border-radius:10px;padding:14px;margin:8px 0;}
+.lj h4{color:#1a5276;margin-bottom:6px;font-size:14px;font-weight:bold;}
+.lj p,.lj li{font-size:13px;color:#333;}
+.lj ul{padding-right:16px;}
+
+/* CHEAT GRID */
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.cheat-card{background:linear-gradient(135deg,#1a5276,#2e86ab);color:white;border-radius:10px;padding:16px;}
+.cheat-card h4{color:#aed6f1;font-size:14px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:5px;}
+.cheat-card li{font-size:13px;opacity:.9;margin:4px 0;padding-right:2px;}
+.cheat-card ul{padding-right:14px;}
+
+/* POINTS LIST */
+.points-list{counter-reset:pts;list-style:none;padding:0;}
+.points-list li{counter-increment:pts;padding:8px 40px 8px 10px;margin:5px 0;background:#f0f7ff;border-radius:7px;border-right:4px solid #2e86ab;position:relative;font-size:14px;}
+.points-list li::before{content:counter(pts);position:absolute;right:10px;top:50%;transform:translateY(-50%);background:#2e86ab;color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;}
+
+/* ZONES */
+.zones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.zone-box{background:#1a5276;color:white;border-radius:10px;padding:14px;text-align:center;}
+.zone-box .zn{font-size:22px;font-weight:bold;opacity:.25;}
+.zone-box .zt{font-size:14px;font-weight:bold;margin:4px 0;}
+.zone-box .zs{font-size:12px;opacity:.75;}
+
+hr{border:none;border-top:2px dashed #d0e2f7;margin:16px 0;}
+@media(max-width:700px){.cards,.mcq-options,.cheat-grid,.zones{grid-template-columns:1fr;}.site-header h1{font-size:22px;}nav{display:none;}}
+@media print{nav{display:none!important;}.section{break-inside:avoid;box-shadow:none;border:1px solid #ccc;}}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>📋 ملخص شامل — إدارة الفعاليات الرياضية والترويحية</h1>
-  <p>د. عبد الإله الصلوي · ماجستير تنفيذي 2026 · جامعة الملك سعود</p>
-  <p style="margin-top:8px; font-size:16px; opacity:0.9;">إعداد: عبدالعزيز الفهد</p>
+<div class="site-header">
+  <div class="header-badge">الماجستير التنفيذي في الإدارة الترويحية الرياضية 2026 — جامعة الملك سعود</div>
+  <h1>📋 مرجع إدارة الفعاليات الرياضية والترويحية</h1>
+  <p class="subtitle">د. عبد الإله الصلوي — أستاذ الإدارة الرياضية والترويحية المشارك</p>
+  <div class="meta-row">
+    <span class="meta-chip">إعداد: عبدالعزيز الفهد</span>
+    <span class="meta-chip">5 فصول كاملة</span>
+    <span class="meta-chip">أسئلة تفاعلية MCQ + صح/خطأ</span>
+    <span class="meta-chip">Cheat Sheet شامل</span>
+  </div>
 </div>
 
-<div class="nav">
-  <a href="#cheat">🗒 Cheat Sheet</a>
-  <a href="#ch1">الفصل الأول</a>
-  <a href="#ch2">الفصل الثاني</a>
-  <a href="#ch3">الفصل الثالث</a>
-  <a href="#ch4">الفصل الرابع</a>
-  <a href="#tools">الأدوات التحليلية</a>
-  <a href="#execution">التنفيذ</a>
-  <a href="#evaluation">التقييم</a>
+<nav>
+  <a href="#ch1">الفصل الأول: ماهية الفعاليات</a>
+  <a href="#ch2">الفصل الثاني: الأهمية والقطاعات</a>
+  <a href="#ch3">الفصل الثالث: مراحل الإدارة</a>
+  <a href="#ch4">الفصل الرابع: المؤتمرات والدورات</a>
+  <a href="#ch5">الفصل الخامس: التدريب والاستضافة</a>
   <a href="#mcq">أسئلة MCQ</a>
   <a href="#tf">صح وخطأ</a>
-  <a href="#essay">مقالية</a>
-  <a href="#top20">أهم 20 نقطة</a>
-  <a href="#top10">أهم 10 أسئلة</a>
-</div>
+  <a href="#essay">أسئلة مقالية</a>
+  <a href="#cheat">Cheat Sheet</a>
+</nav>
 
 <div class="container">
 
-<!-- ===== CHEAT SHEET ===== -->
-<div class="section cheatsheet" id="cheat">
-  <h2 style="color:white; border-color: rgba(255,255,255,0.3);">🗒 Cheat Sheet — المراجعة السريعة قبل الاختبار</h2>
-  <div class="cs-grid">
-    <div>
-      <h3>📌 التعريفات الجوهرية</h3>
-      <ul>
-        <li><strong>الفعالية:</strong> اجتماع مؤقت لتحقيق هدف محدد</li>
-        <li><strong>إدارة الفعاليات:</strong> عملية اختيار الأشخاص المناسبين وتخطيط وتنفيذ وتقييم الفعالية (Yeoman, 2009)</li>
-        <li><strong>منظم الفعاليات:</strong> مؤسسة مرخصة تمتشي مع معايير التصنيف</li>
-        <li><strong>أصحاب المصلحة:</strong> أفراد/مجموعات لهم مصلحة مباشرة أو غير مباشرة</li>
-      </ul>
-      <h3>📌 تصنيفات الفعاليات حسب الحجم</h3>
-      <ul>
-        <li><strong>Mega Events:</strong> دولية (كأس العالم، الأولمبياد)</li>
-        <li><strong>Hallmark Events:</strong> تعكس ثقافة الدولة</li>
-        <li><strong>Regional Events:</strong> إقليمية (السياحة الإقليمية)</li>
-        <li><strong>Local Events:</strong> محلية (البازارات، التوعية)</li>
-      </ul>
-      <h3>📌 مراحل إدارة الفعالية (جورج واشنطن)</h3>
-      <ul>
-        <li>1️⃣ البحث → 2️⃣ التصميم → 3️⃣ التخطيط → 4️⃣ التنفيذ → 5️⃣ التقييم</li>
-      </ul>
-      <h3>📌 الأسئلة الخمسة الكبرى (5W's)</h3>
-      <ul>
-        <li>Why? من؟ What? Where? When?</li>
-      </ul>
-    </div>
-    <div>
-      <h3>📌 SMART Goals</h3>
-      <ul>
-        <li>S = Specific (محدد)</li>
-        <li>M = Measurable (قابل للقياس)</li>
-        <li>A = Attainable (قابل للتحقيق)</li>
-        <li>R = Relevant (مرتبط بالموضوع)</li>
-        <li>T = Timely (محدد زمنياً) — أول من استخدمه: د. جورج دوران</li>
-      </ul>
-      <h3>📌 SWOT</h3>
-      <ul>
-        <li>S = Strengths (نقاط القوة الداخلية)</li>
-        <li>W = Weaknesses (نقاط الضعف الداخلية)</li>
-        <li>O = Opportunities (الفرص الخارجية)</li>
-        <li>T = Threats (التهديدات الخارجية)</li>
-      </ul>
-      <h3>📌 PESTEL</h3>
-      <ul>
-        <li>Political, Economic, Social, Technological, Environmental, Legal</li>
-      </ul>
-      <h3>📌 المزيج التسويقي الرباعي</h3>
-      <ul>
-        <li>Product + Price + Place + Promotion</li>
-      </ul>
-      <h3>📌 مفتاح التقييم (قائمة 46 عنصراً)</h3>
-      <ul>
-        <li>40-46 = جودة عالية | 30-40 = متوسطة | أقل من 30 = ضعيف</li>
-      </ul>
-      <h3>📌 الميزانية</h3>
-      <ul>
-        <li>احتياطي طوارئ: 5% - 25%</li>
-        <li>توزيع: تسويق 40% + موقع 30% + مواد 30%</li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- ============================================================ -->
+<!-- الفصل الأول -->
+<!-- ============================================================ -->
+<section class="section" id="ch1">
+  <div class="section-header"><span class="icon">📖</span><h2>الفصل الأول: ماهية الفعاليات وتصنيفاتها</h2></div>
+  <div class="section-body">
 
-<!-- ===== CHAPTER 1 ===== -->
-<div class="section" id="ch1">
-  <h2><span class="emoji-icon">📖</span> الفصل الأول: ماهية الفعاليات ومفاهيمها وأنواعها</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">المصطلحات الأساسية</h3>
-    <div class="grid-2">
-      <div>
-        <strong>مفهوم الفعالية:</strong> اجتماع مؤقت لمجموعة أشخاص لممارسة نشاطات معينة أو تلقي ثقافة أو تحقيق هدف اجتماعي. تشمل: مؤتمرات، معارض، مناسبات اجتماعية، فعاليات رياضية.<br><br>
-        <strong>إدارة الفعاليات (Yeoman, 2009:15):</strong> عملية منظمة يتم من خلالها اختيار الأشخاص المناسبين لإدارة الفعالية وإعدادهم، ثم تكليفهم بالتخطيط والتنفيذ والتقييم.
-      </div>
-      <div>
-        <strong>منظم الفعاليات:</strong> مؤسسة أو شركة مرخصة للعمل في تنظيم المعارض، تمتشي مع معايير التصنيف المعتمدة داخل الدولة.<br><br>
-        <strong>أصحاب المصلحة:</strong> أفراد أو مجموعات أو منظمات لها مصلحة خاصة في الفعالية (مباشرة أو غير مباشرة) كالمنظمين، الموظفين، المستثمرين، المتطوعين.<br><br>
-        <strong>الخدمات المساعدة:</strong> جهات تزود المنظمين بخدمات تخصصية (إضاءة، صوتيات، ديكور، نقل).
+    <div class="subsec">
+      <div class="subsec-title">تعريف الفعالية</div>
+      <div class="def-box">
+        الفعالية هي <strong style="color:var(--gold2)">اجتماع مؤقت</strong> لتحقيق هدف محدد — تجمع أشخاصاً في مكان وزمان محددين.
+        <div class="def-src">المفهوم الأساسي — المذكرة الدراسية</div>
       </div>
     </div>
-  </div>
 
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">القاعدة الذهبية للنجاح</h3>
-    <p>تُبنى الفعالية الناجحة على <strong>كفاءة الإدارة المنظمة</strong> وما يتصل بها من مهام: التخطيط + التنفيذ + المراجعة + إعادة الفحص لكل التفاصيل. <em>عاقبة الفشل وخيمة — كل مشارك يشعر بتداعياته فوراً.</em></p>
-  </div>
-
-  <h3>تصنيفات الفعاليات</h3>
-
-  <h4 style="margin:12px 0 8px; color:#555;">أولاً: حسب الحجم والمستوى</h4>
-  <table>
-    <tr>
-      <th>النوع</th><th>التعريف</th><th>المميزات</th><th>أمثلة</th>
-    </tr>
-    <tr>
-      <td><strong>Mega Events</strong><br>ضخمة</td>
-      <td>تستهدف السوق الدولي</td>
-      <td>تغطية إعلامية عالمية، تكاليف عالية جداً، أثر بيئي كبير</td>
-      <td>كأس العالم، الأولمبياد، مؤتمرات عالمية</td>
-    </tr>
-    <tr>
-      <td><strong>Hallmark Events</strong><br>رئيسية</td>
-      <td>تعكس ثقافة الدولة المستضيفة</td>
-      <td>مشاركون دوليون كثر، تغطية دولية كبيرة</td>
-      <td>مهرجانات وطنية كبرى، فعاليات ثقافية مميزة</td>
-    </tr>
-    <tr>
-      <td><strong>Regional Events</strong><br>إقليمية</td>
-      <td>تستهدف أقاليم معينة للجذب السياحي</td>
-      <td>الجمهور المحلي أولاً، بعض التغطية الدولية</td>
-      <td>فعاليات السياحة الإقليمية، مهرجانات محلية</td>
-    </tr>
-    <tr>
-      <td><strong>Local Events</strong><br>محلية</td>
-      <td>تخدم المجتمع المحلي</td>
-      <td>جمهور محلي فقط، فوائد للمدينة</td>
-      <td>البازارات، فعاليات التوعية، فعاليات الصيف</td>
-    </tr>
-  </table>
-
-  <h4 style="margin:12px 0 8px; color:#555;">ثانياً: حسب الشكل</h4>
-  <div class="grid-3">
-    <div class="card"><h4>البطولات الرياضية</h4><p>تجمع بشري لإقامة مسابقات بين وحدات رياضية وفق قواعد موحدة</p></div>
-    <div class="card"><h4>المؤتمرات</h4><p>مئات أو آلاف الأشخاص، عدة أيام، برامج اجتماعية ومعارض</p></div>
-    <div class="card"><h4>الندوات</h4><p>12-150 شخصاً، يوم أو يومين، بهدف تثقيف الحضور</p></div>
-    <div class="card"><h4>ورش العمل</h4><p>عدد قليل، مناقشة مواضيع محددة وتبادل الآراء</p></div>
-    <div class="card"><h4>المهرجانات</h4><p>احتفال عام يجمع أعداداً كبيرة في إطار رياضي أو ثقافي</p></div>
-    <div class="card"><h4>اللقاءات الشبابية</h4><p>للفئة العمرية 15-35 سنة، تشمل ورش عمل وحوارات</p></div>
-  </div>
-
-  <h4 style="margin:14px 0 8px; color:#555;">ثالثاً: حسب الموضوع</h4>
-  <div class="grid-3">
-    <div class="card" style="font-size:13px;">
-      <ul>
-        <li>فعاليات سياسية (زيارات كبار الشخصيات)</li>
-        <li>فعاليات رياضية (دوري كرة القدم)</li>
-        <li>فعاليات ترفيهية (مهرجانات، حفلات)</li>
-      </ul>
-    </div>
-    <div class="card" style="font-size:13px;">
-      <ul>
-        <li>فعاليات علمية وتربوية (ندوات، مؤتمرات)</li>
-        <li>فعاليات ثقافية (كرنفالات، أحداث دينية)</li>
-        <li>فعاليات الأعمال (معارض، أسواق)</li>
-      </ul>
-    </div>
-    <div class="card" style="font-size:13px;">
-      <ul>
-        <li>الفعاليات الخاصة (حفلات الزواج)</li>
-        <li>رسمية: وفق إجراءات نظامية محددة</li>
-        <li>غير رسمية: لتبادل الآراء بعيداً عن الرسمية</li>
-      </ul>
-    </div>
-  </div>
-
-  <h4 style="margin:14px 0 8px; color:#555;">رابعاً: حسب الزمن والحجم</h4>
-  <div class="grid-2">
-    <div>
-      <div class="card"><h4>من حيث الزمن</h4>
-        <ul style="font-size:13px; padding-right:16px;">
-          <li><strong>متكررة:</strong> دورية منتظمة (الجنادرية سنوياً، الأولمبياد كل 4 سنوات)</li>
-          <li><strong>غير متكررة:</strong> لمرة واحدة أو مناسبة استثنائية (يوبيل ذهبي)</li>
-        </ul>
+    <div class="subsec">
+      <div class="subsec-title">تعريف إدارة الفعاليات</div>
+      <div class="def-box">
+        إدارة الفعاليات هي: <strong style="color:var(--gold2)">عملية منظمة تشمل الاختيار والتخطيط والتنفيذ والتقييم</strong> لأي فعالية بهدف تحقيق أهدافها المحددة.
+        <div class="def-src">Yeoman, 2009:15</div>
       </div>
     </div>
-    <div>
-      <div class="card"><h4>من حيث الحجم</h4>
-        <ul style="font-size:13px; padding-right:16px;">
-          <li><strong>عملاقة:</strong> ملايين (الحج، كأس العالم)</li>
-          <li><strong>محددة:</strong> آلاف (موسم الرياض)</li>
-          <li><strong>محدودة:</strong> موضوع متخصص (مؤتمر علمي)</li>
-          <li><strong>صغيرة:</strong> مدارس أو أحياء</li>
-        </ul>
+
+    <div class="subsec">
+      <div class="subsec-title">تعريف منظم الفعاليات</div>
+      <div class="def-box">
+        منظم الفعاليات هو <strong style="color:var(--gold2)">مؤسسة مرخصة تمتشي مع معايير التصنيف</strong> المعتمدة في تنظيم الفعاليات.
+        <div class="def-src">المذكرة الدراسية</div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- ===== CHAPTER 2 - IMPORTANCE ===== -->
-<div class="section" id="ch2">
-  <h2><span class="emoji-icon">🏟️</span> الفصل الثاني: أهمية الفعاليات والقطاعات المعنية</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">أهمية الفعاليات الرياضية والترويحية (Allen & Otoole, 2008:13)</h3>
-    <div class="grid-2">
-      <div class="card"><h4>🏦 دعم الاقتصاد الوطني</h4><p>تساهم في دعم الاقتصاد وفق رؤية 2030 ودفع عجلة التنمية للوصول للمستوى العالمي في السياحة والفعاليات</p></div>
-      <div class="card"><h4>🏢 تعزيز صورة الهيئة</h4><p>تساعد في تعزيز صورة الهيئة من خلال تنفيذ الفعاليات المهمة لخدمة المنظمة والمجتمع</p></div>
-      <div class="card"><h4>🎭 التعريف بالثقافة المحلية</h4><p>تساهم في التعريف بالثقافة المحلية ونقلها إلى ثقافات شعوب العالم</p></div>
-      <div class="card"><h4>💡 تبادل الخبرات والأفكار</h4><p>فرصة للقاء المتخصصين مما يؤدي لزيادة تبادل الأفكار والاستفادة من التجارب العلمية والعملية</p></div>
+    <div class="subsec">
+      <div class="subsec-title">أصحاب المصلحة (Stakeholders)</div>
+      <div class="highlight">
+        <strong>أصحاب المصلحة:</strong> أفراد أو مجموعات لهم مصلحة <strong>مباشرة أو غير مباشرة</strong> في الفعالية. يشملون: المنظمين، الرعاة، الجمهور، الحكومة، وسائل الإعلام، المجتمع المحيط.
+      </div>
     </div>
-  </div>
 
-  <h3>القطاعات المهتمة بالفعاليات في المملكة</h3>
-  <div class="grid-3">
-    <div class="card">
-      <h4>🏃 وزارة الرياضة</h4>
-      <p style="font-size:13px;">تأسست 1394هـ/1974م، تحولت لوزارة في 25 فبراير 2020. أهدافها الأربعة:</p>
-      <ul style="font-size:13px; padding-right:16px;">
-        <li>زيادة نسبة ممارسة الرياضة</li>
-        <li>صناعة رياضة تنافسية عالمياً</li>
+    <div class="subsec">
+      <div class="subsec-title">الخدمات المساعدة للفعاليات</div>
+      <div class="cards">
+        <div class="card"><h4>💡 الإضاءة</h4><p>تهيئة الأجواء وإبراز العروض والفعاليات الليلية</p></div>
+        <div class="card"><h4>🔊 الصوتيات</h4><p>نظام الصوت والميكروفونات والتغطية الصوتية الشاملة</p></div>
+        <div class="card"><h4>🎨 الديكور</h4><p>التصميم البصري والزينة وتهيئة المكان</p></div>
+        <div class="card"><h4>🚌 النقل</h4><p>خدمات التنقل والمواصلات للمشاركين</p></div>
+        <div class="card"><h4>📣 الدعاية</h4><p>التسويق والترويج والحملات الإعلانية</p></div>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">⭐ القاعدة الذهبية في إدارة الفعاليات</div>
+      <div class="highlight" style="border-color:var(--gold);background:linear-gradient(135deg,#fffbf0,#fff9e8);">
+        <div class="flow">
+          <div class="flow-step">التخطيط</div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-step">التنفيذ</div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-step">المراجعة</div>
+          <div class="flow-arrow">←</div>
+          <div class="flow-step">إعادة الفحص</div>
+        </div>
+        <strong style="color:var(--red)">⚠️ تنبيه مهم:</strong> عاقبة الفشل في أي مرحلة وخيمة — القاعدة الذهبية تُحصّن الفعالية من الأخطاء.
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">مهارات منظم الفعاليات الناجح (6 مهارات)</div>
+      <ul class="styled-list num">
+        <li><strong>المهارات التنظيمية</strong> — إدارة الوقت والموارد والمهام بكفاءة عالية</li>
+        <li><strong>مهارات الاتصال</strong> — التواصل الفعّال مع جميع الأطراف</li>
+        <li><strong>شبكات العلاقات (Networking)</strong> — <span class="tag gold">المفتاح الأساسي</span> — بناء علاقات قوية ومتشعبة</li>
+        <li><strong>الإبداع والابتكار</strong> — تقديم أفكار مميزة وحلول خلاقة</li>
+        <li><strong>حل المشكلات والتفاوض</strong> — التعامل مع الأزمات وإيجاد الحلول</li>
+        <li><strong>القيادة وحب العمل</strong> — الإلهام والحماس وقيادة الفريق</li>
+      </ul>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">تصنيفات الفعاليات — جداول شاملة</div>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>1. حسب الحجم (4 أنواع):</strong></p>
+      <table>
+        <thead><tr><th>النوع</th><th>التعريف</th><th>الخصائص</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag gold">Mega Events</span></td><td>الفعاليات الضخمة جداً</td><td>تُستضاف دولياً، أثر اقتصادي وإعلامي ضخم (أولمبياد، كأس العالم)</td></tr>
+          <tr><td><span class="tag navy">Hallmark Events</span></td><td>فعاليات العلامة التجارية</td><td>ترتبط بمكان محدد وتُعرّف به (كرنفال البندقية، سباق موناكو)</td></tr>
+          <tr><td><span class="tag green">Regional Events</span></td><td>الفعاليات الإقليمية</td><td>تخدم منطقة جغرافية محددة</td></tr>
+          <tr><td><span class="tag">Local Events</span></td><td>الفعاليات المحلية</td><td>تخدم المجتمع المحلي</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>2. حسب الحجم العددي:</strong></p>
+      <table>
+        <thead><tr><th>الحجم</th><th>العدد</th></tr></thead>
+        <tbody>
+          <tr><td>عملاقة</td><td>ملايين من المشاركين والمتفرجين</td></tr>
+          <tr><td>محددة</td><td>آلاف</td></tr>
+          <tr><td>محدودة</td><td>متخصصة بجمهور معين</td></tr>
+          <tr><td>صغيرة</td><td>عدد محدود جداً</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>3. حسب المستوى:</strong></p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="tag gold">عالمية / دولية</span>
+        <span class="tag navy">إقليمية</span>
+        <span class="tag green">محلية</span>
+      </div>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>4. حسب الزمن:</strong></p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="tag gold">متكررة (دورية)</span>
+        <span class="tag navy">غير متكررة (استثنائية)</span>
+      </div>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>5. حسب الشكل:</strong></p>
+      <table>
+        <thead><tr><th>الشكل</th><th>تفاصيل مهمة</th></tr></thead>
+        <tbody>
+          <tr><td>البطولات والدورات الرياضية</td><td>منافسات رياضية منظمة</td></tr>
+          <tr><td>المؤتمرات والندوات</td><td><span class="num-highlight">12-150</span> شخص — مدة <span class="num-highlight">يوم إلى يومين</span></td></tr>
+          <tr><td>ورش العمل (Workshops)</td><td>تدريبية تطبيقية تفاعلية</td></tr>
+          <tr><td>المهرجانات</td><td>احتفالية ثقافية وترفيهية</td></tr>
+          <tr><td>اللقاءات الشبابية</td><td>الفئة المستهدفة: <span class="num-highlight">15-35 سنة</span></td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>6. حسب الموضوع:</strong></p>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="tag">سياسية</span><span class="tag">رياضية</span><span class="tag">ترفيهية</span><span class="tag">علمية</span><span class="tag">ثقافية</span><span class="tag">الأعمال</span><span class="tag">خاصة</span>
+      </div>
+
+      <p style="font-size:.85rem;color:var(--muted);margin-bottom:.8rem;"><strong>7. حسب الطبيعة:</strong></p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag gold">رسمية</span><span class="tag navy">غير رسمية</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- الفصل الثاني -->
+<!-- ============================================================ -->
+<section class="section" id="ch2">
+  <div class="section-header"><span class="icon">🏛️</span><h2>الفصل الثاني: الأهمية والقطاعات المعنية</h2></div>
+  <div class="section-body">
+
+    <div class="subsec">
+      <div class="subsec-title">أهمية الفعاليات (Allen & Otoole, 2008:13)</div>
+      <ul class="styled-list num">
+        <li><strong>دعم الاقتصاد الوطني</strong> — يتوافق مع أهداف <span class="tag gold">رؤية 2030</span></li>
+        <li><strong>تعزيز صورة الهيئة أو الدولة المنظمة</strong> — الحضور الإعلامي والسمعة</li>
+        <li><strong>التعريف بالثقافة المحلية</strong> — إبراز الموروث الحضاري والهوية الوطنية</li>
+        <li><strong>تبادل الخبرات والأفكار</strong> — التعلم المشترك وبناء الشبكات المعرفية</li>
+      </ul>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">وزارة الرياضة</div>
+      <div class="highlight blue">
+        <strong>📅 التأسيس:</strong> <span class="num-highlight">1394هـ / 1974م</span> (رئاسة للشباب ثم وزارة) <br>
+        <strong>📅 أصبحت وزارة:</strong> <span class="num-highlight">25 فبراير 2020م</span>
+      </div>
+      <p style="font-size:.88rem;font-weight:600;margin:.7rem 0 .4rem;">الأهداف الأربعة للوزارة:</p>
+      <ul class="styled-list num">
+        <li>زيادة الممارسة الرياضية بين المواطنين</li>
+        <li>رياضة تنافسية على المستوى العالمي</li>
         <li>تطوير المنشآت الرياضية</li>
-        <li>تعزيز الاستدامة المالية</li>
+        <li>الاستدامة المالية للقطاع الرياضي</li>
       </ul>
     </div>
-    <div class="card">
-      <h4>🎪 الهيئة العامة للترفيه</h4>
-      <p style="font-size:13px;">تأسست 30 رجب 1437هـ / 12 مايو 2016م. أدوارها:</p>
-      <ul style="font-size:13px; padding-right:16px;">
-        <li>توفير خيارات ترفيهية شاملة</li>
-        <li>دعم الاقتصاد من خلال تنويع الدخل</li>
-        <li>دعم المنشآت الصغيرة والمتوسطة</li>
-        <li>تحفيز دور القطاع الخاص</li>
+
+    <div class="subsec">
+      <div class="subsec-title">الهيئة العامة للترفيه</div>
+      <div class="highlight blue">
+        <strong>📅 تأسست:</strong> <span class="num-highlight">30 رجب 1437هـ / 12 مايو 2016م</span>
+      </div>
+      <p style="font-size:.88rem;font-weight:600;margin:.7rem 0 .4rem;">الأدوار الخمسة للهيئة:</p>
+      <ul class="styled-list num">
+        <li>توفير ترفيه شامل ومتنوع لجميع شرائح المجتمع</li>
+        <li>دعم الاقتصاد الوطني وتوليد فرص العمل</li>
+        <li>دعم المنشآت الصغيرة والمتوسطة في القطاع</li>
+        <li>رفع مستوى الاستثمار الأجنبي في قطاع الترفيه</li>
+        <li>تحفيز القطاع الخاص على المشاركة والاستثمار</li>
       </ul>
     </div>
-    <div class="card">
-      <h4>✈️ وزارة السياحة</h4>
-      <p style="font-size:13px;">كانت الهيئة العامة للسياحة والتراث. أطلقت 2019م أحد عشر موسماً:</p>
-      <ul style="font-size:13px; padding-right:16px;">
-        <li>موسم الرياض (11 أكتوبر 2019 - +100 فعالية)</li>
-        <li>موسم جدة والمنطقة الشرقية</li>
-        <li>موسم الدرعية والطائف والعلا</li>
-        <li>مهرجان MDL Beast: أكبر مهرجان موسيقى إلكترونية (+400 ألف زائر)</li>
+
+    <div class="subsec">
+      <div class="subsec-title">وزارة السياحة — الفعاليات الكبرى</div>
+      <div class="highlight green">
+        <strong>📅 أطلقت الوزارة 2019م:</strong> أحد عشر موسماً سياحياً في مختلف مناطق المملكة
+      </div>
+      <table>
+        <thead><tr><th>الفعالية</th><th>التاريخ</th><th>الإحصائيات</th></tr></thead>
+        <tbody>
+          <tr><td><strong>موسم الرياض</strong></td><td><span class="num-highlight">11 أكتوبر 2019م</span></td><td>أكثر من <span class="num-highlight">100</span> فعالية ترفيهية</td></tr>
+          <tr><td><strong>MDL Beast</strong></td><td>2019م</td><td><span class="num-highlight">+400 ألف</span> زائر / <span class="num-highlight">3</span> أيام / <span class="num-highlight">5</span> مسارح / <span class="num-highlight">+100</span> فنان</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">الفعاليات الثقافية والتراثية الكبرى</div>
+      <table>
+        <thead><tr><th>الفعالية</th><th>التأسيس</th><th>ملاحظات</th></tr></thead>
+        <tbody>
+          <tr><td><strong>مهرجان الجنادرية</strong></td><td><span class="num-highlight">1405هـ / 1985م</span></td><td>أُسند لوزارة الثقافة عام <span class="num-highlight">2019م</span></td></tr>
+          <tr><td><strong>مهرجان الملك عبدالعزيز للصقور</strong></td><td>سنوي</td><td>دخل موسوعة غينيس <span class="num-highlight">2018م</span> بمشاركة <span class="num-highlight">1723</span> صقراً في منطقة <strong>ملهم</strong></td></tr>
+          <tr><td><strong>مهرجان الملك عبدالعزيز للإبل</strong></td><td>سنوي</td><td>فعالية ثقافية واقتصادية تحت الرعاية الملكية</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- الفصل الثالث -->
+<!-- ============================================================ -->
+<section class="section" id="ch3">
+  <div class="section-header"><span class="icon">⚙️</span><h2>الفصل الثالث: مراحل إدارة الفعالية</h2></div>
+  <div class="section-body">
+
+    <div class="highlight" style="margin-bottom:1.2rem;">
+      <strong>المنهجية العلمية:</strong> <span class="tag gold">جامعة جورج واشنطن</span> — <span class="num-highlight">5 مراحل</span> متتالية ومترابطة
+    </div>
+
+    <!-- المرحلة الأولى: البحث -->
+    <div class="subsec">
+      <div class="subsec-title">المرحلة الأولى: البحث 🔍</div>
+      <div class="highlight red"><strong>⭐ أصعب المراحل وأهمها</strong> — تُحدد نجاح أو فشل الفعالية من البداية</div>
+      <p style="font-size:.88rem;font-weight:600;margin:.7rem 0 .4rem;">الأسئلة الخمسة (5W's):</p>
+      <table>
+        <thead><tr><th>السؤال</th><th>المعنى</th><th>ما تبحث عنه</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag gold">WHY؟</span></td><td>لماذا؟</td><td>الهدف والسبب الجوهري من الفعالية</td></tr>
+          <tr><td><span class="tag gold">WHO؟</span></td><td>من؟</td><td>الجمهور المستهدف، المشاركون، أصحاب المصلحة</td></tr>
+          <tr><td><span class="tag gold">WHAT؟</span></td><td>ماذا؟</td><td>طبيعة الفعالية، محتواها، برنامجها</td></tr>
+          <tr><td><span class="tag gold">WHERE؟</span></td><td>أين؟</td><td>الموقع، المكان، التجهيزات المطلوبة</td></tr>
+          <tr><td><span class="tag gold">WHEN؟</span></td><td>متى؟</td><td>التوقيت، المدة، الجدول الزمني</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- المرحلة الثانية: التصميم -->
+    <div class="subsec">
+      <div class="subsec-title">المرحلة الثانية: التصميم 🎨</div>
+
+      <p style="font-size:.88rem;font-weight:600;margin-bottom:.5rem;">أ) الرؤية — 4 خصائص لا بد منها:</p>
+      <ul class="styled-list">
+        <li><strong>موجزة</strong> — واضحة وغير مطولة</li>
+        <li><strong>واضحة</strong> — لا تحتمل التفسيرات المتعددة</li>
+        <li><strong>مستقبلية</strong> — تنظر للأمام والطموح</li>
+        <li><strong>ملهمة</strong> — تحفز الفريق والجمهور</li>
+      </ul>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">ب) الهوية البصرية — 5 عناصر:</p>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <span class="tag">الرسومات والشعار</span>
+        <span class="tag">العبارات والشعارات</span>
+        <span class="tag">الطباعة والخطوط</span>
+        <span class="tag">الألوان الرسمية</span>
+        <span class="tag">الصور والمرئيات</span>
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin-bottom:.5rem;">ج) سمة الفعالية — 5 خطوات:</p>
+      <div class="flow">
+        <div class="flow-step">1. تحديد السمة</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">2. التصميم</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">3. التطبيق</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">4. الاتساق</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">5. التقييم</div>
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">د) أداة SWOT — للتحليل قبل التصميم:</p>
+      <table>
+        <thead><tr><th>الأداة</th><th>المحتوى</th><th>النوع</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag gold">S — نقاط القوة</span></td><td>Strengths — ما نمتلكه من ميزات</td><td>داخلي ✅</td></tr>
+          <tr><td><span class="tag gold">W — نقاط الضعف</span></td><td>Weaknesses — ما يجب تحسينه</td><td>داخلي ✅</td></tr>
+          <tr><td><span class="tag navy">O — الفرص</span></td><td>Opportunities — ما يمكن استثماره</td><td>خارجي 🌍</td></tr>
+          <tr><td><span class="tag navy">T — التهديدات</span></td><td>Threats — ما يجب مواجهته</td><td>خارجي 🌍</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">هـ) أداة PESTEL:</p>
+      <table>
+        <thead><tr><th>الحرف</th><th>العامل</th><th>مثال سعودي</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag gold">P</span></td><td>السياسي (Political)</td><td><strong>دعم القيادة السعودية — الأقوى تأثيراً</strong></td></tr>
+          <tr><td><span class="tag">E</span></td><td>الاقتصادي (Economic)</td><td>رؤية 2030 والتنويع الاقتصادي</td></tr>
+          <tr><td><span class="tag">S</span></td><td>الاجتماعي (Social)</td><td>مشاركة المرأة في الرياضة والترفيه</td></tr>
+          <tr><td><span class="tag">T</span></td><td>التكنولوجي (Technological)</td><td>التسجيل الرقمي وتطبيقات الفعاليات</td></tr>
+          <tr><td><span class="tag">E</span></td><td>البيئي (Environmental)</td><td><strong>الطقس الحار</strong> — التحدي البيئي الأبرز</td></tr>
+          <tr><td><span class="tag">L</span></td><td>القانوني (Legal)</td><td>التراخيص والتصاريح الرسمية</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- المرحلة الثالثة: التخطيط -->
+    <div class="subsec">
+      <div class="subsec-title">المرحلة الثالثة: التخطيط 📋</div>
+
+      <p style="font-size:.88rem;font-weight:600;margin-bottom:.5rem;">أ) الميزانية — التوزيع المعياري:</p>
+      <div class="cards">
+        <div class="card"><h4>📣 التسويق والإعلان</h4><p style="font-size:1.5rem;font-weight:700;color:var(--navy);">40%</p></div>
+        <div class="card"><h4>📍 الموقع والمرافق</h4><p style="font-size:1.5rem;font-weight:700;color:var(--navy);">30%</p></div>
+        <div class="card"><h4>📦 المواد والتجهيزات</h4><p style="font-size:1.5rem;font-weight:700;color:var(--navy);">30%</p></div>
+      </div>
+      <div class="highlight red">
+        <strong>⚠️ ميزانية الطوارئ:</strong> من <span class="num-highlight">5%</span> إلى <span class="num-highlight">25%</span> من إجمالي الميزانية — حسب حجم المخاطرة<br>
+        <strong>📌 قاعدة مهمة:</strong> يجب الحصول على <span class="num-highlight">3 عروض أسعار</span> على الأقل لأي بند
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">ب) أهداف SMART — د. جورج دوران:</p>
+      <table>
+        <thead><tr><th>الحرف</th><th>المعنى</th><th>التطبيق</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag gold">S</span></td><td>Specific — محدد</td><td>هدف واضح لا يقبل التأويل</td></tr>
+          <tr><td><span class="tag gold">M</span></td><td>Measurable — قابل للقياس</td><td>بأرقام وإحصائيات واضحة</td></tr>
+          <tr><td><span class="tag gold">A</span></td><td>Attainable — قابل للتحقيق</td><td>واقعي وضمن الإمكانات</td></tr>
+          <tr><td><span class="tag gold">R</span></td><td>Relevant — ذو صلة</td><td>يرتبط بالهدف العام</td></tr>
+          <tr><td><span class="tag gold">T</span></td><td>Timely — محدد بوقت</td><td>له موعد نهائي واضح</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">ج) الموارد البشرية — 4 خطوات:</p>
+      <ul class="styled-list num">
+        <li>إعداد الميزانية الخاصة بالموارد البشرية</li>
+        <li>رسم الهيكل التنظيمي للفريق</li>
+        <li>كتابة الوصف الوظيفي لكل دور</li>
+        <li>اختيار الفريق المناسب وتدريبه</li>
+      </ul>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">د) مخطط جانت (Gantt Chart):</p>
+      <div class="highlight blue">
+        <strong>المخترع:</strong> <span class="tag navy">هنري جانت</span> — أداة بصرية لتتبع المهام والمواعيد الزمنية ومسارات المشروع بالتفصيل.
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">هـ) التسويق — المزيج الرباعي (4P's):</p>
+      <div class="cards">
+        <div class="card"><h4>Product — المنتج</h4><p>الفعالية ذاتها، محتواها، قيمتها المضافة</p></div>
+        <div class="card"><h4>Price — السعر</h4><p>تكلفة الحضور، أسعار التذاكر والرعاية</p></div>
+        <div class="card"><h4>Place — المكان</h4><p>موقع الفعالية وقنوات التوزيع والوصول</p></div>
+        <div class="card"><h4>Promotion — الترويج</h4><p>الإعلان، العلاقات العامة، التسويق الرقمي</p></div>
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">و) ملف الرعاة — 5 أسئلة جوهرية + 6 خطوات إعداد:</p>
+      <div class="cards">
+        <div class="card">
+          <h4>📋 الأسئلة الخمسة الجوهرية</h4>
+          <ul>
+            <li>ما الذي يحصل عليه الراعي؟</li>
+            <li>ما الجمهور المستهدف؟</li>
+            <li>ما العائد المتوقع؟</li>
+            <li>ما مدة الرعاية؟</li>
+            <li>ما الحصرية المقدمة؟</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>📌 خطوات إعداد الملف (6)</h4>
+          <ul>
+            <li>تحديد هوية الفعالية</li>
+            <li>تحديد مزايا الرعاية</li>
+            <li>تحديد الفئات والأسعار</li>
+            <li>إعداد الوثيقة الرسمية</li>
+            <li>تحديد الرعاة المناسبين</li>
+            <li>التفاوض والتعاقد</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- المرحلة الرابعة: التنفيذ -->
+    <div class="subsec">
+      <div class="subsec-title">المرحلة الرابعة: التنفيذ 🚀</div>
+      <div class="highlight"><strong>تقسيم الموقع إلى <span class="num-highlight">9 مناطق</span>:</strong></div>
+
+      <table>
+        <thead><tr><th>#</th><th>المنطقة</th><th>ملاحظات مهمة</th></tr></thead>
+        <tbody>
+          <tr style="background:#fff9e6;"><td>1</td><td><strong>🧠 التحكم والسيطرة</strong></td><td><span class="tag gold">المركز العصبي للفعالية</span> — غرفة العمليات</td></tr>
+          <tr><td>2</td><td><strong>👋 الاستقبال</strong></td><td>أول نقطة تواصل مع الضيوف</td></tr>
+          <tr><td>3</td><td><strong>📝 التسجيل</strong></td><td>يُحوَّل لتطبيق ذكي — استخدام QR Code</td></tr>
+          <tr><td>4</td><td><strong>🍽️ الضيافة</strong></td><td>الأطعمة والمشروبات والخدمات</td></tr>
+          <tr><td>5</td><td><strong>🎤 العرض والتقديم</strong></td><td>المسرح والمنصة الرئيسية</td></tr>
+          <tr style="background:#fff9e6;"><td>6</td><td><strong>⭐ VIP</strong></td><td>منطقة خاصة للضيوف المميزين</td></tr>
+          <tr><td>7</td><td><strong>👥 منطقة الزوار</strong></td><td>تستوعب عموم الجمهور</td></tr>
+          <tr><td>8</td><td><strong>🚻 دورات المياه</strong></td><td><span class="num-highlight">1 دورة</span> لكل <span class="num-highlight">50-75 شخصاً</span> — فحص كل <span class="num-highlight">30 دقيقة</span></td></tr>
+          <tr><td>9</td><td><strong>🚗 مواقف السيارات</strong></td><td>سهولة الوصول والمغادرة</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight green" style="margin-top:1rem;">
+        <strong>الست المناطق الأساسية:</strong> التحكم والسيطرة + الاستقبال + التسجيل + الضيافة + العرض والتقديم + VIP
+      </div>
+    </div>
+
+    <!-- المرحلة الخامسة: التقييم -->
+    <div class="subsec">
+      <div class="subsec-title">المرحلة الخامسة: التقييم 📊</div>
+
+      <div class="cards">
+        <div class="card">
+          <h4>📈 التقييم الكمي</h4>
+          <ul>
+            <li>الإيرادات المحققة</li>
+            <li>عدد الزوار والمشاركين</li>
+            <li>عدد المتابعين على الرقمي</li>
+            <li>التغطية الإعلامية</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>💬 التقييم النوعي</h4>
+          <ul>
+            <li>تفاعل الجمهور ورضاه</li>
+            <li>نسبة التكرار (من سيعود؟)</li>
+            <li>جودة التجربة العامة</li>
+            <li>تحقيق الأهداف المعلنة</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">قائمة التحقق — <span class="num-highlight">46 عنصراً</span>:</p>
+      <table>
+        <thead><tr><th>النتيجة</th><th>التصنيف</th></tr></thead>
+        <tbody>
+          <tr><td><span class="num-highlight">40-46</span></td><td>✅ <strong>عالية</strong> — مستوى ممتاز</td></tr>
+          <tr><td><span class="num-highlight">30-40</span></td><td>⚡ <strong>متوسطة</strong> — تحتاج تحسيناً</td></tr>
+          <tr><td><span class="num-highlight">أقل من 30</span></td><td>❌ <strong>ضعيفة</strong> — يحتاج مراجعة جذرية</td></tr>
+        </tbody>
+      </table>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">قائمة التحقق الشاملة — <span class="num-highlight">65 عنصراً في 10 محاور</span>:</p>
+      <table>
+        <thead><tr><th>النتيجة</th><th>التصنيف</th></tr></thead>
+        <tbody>
+          <tr><td><span class="num-highlight">58+</span></td><td>🌟 <strong>ممتاز</strong></td></tr>
+          <tr><td><span class="num-highlight">48+</span></td><td>✅ <strong>جيد جداً</strong></td></tr>
+          <tr><td><span class="num-highlight">38+</span></td><td>👍 <strong>جيد</strong></td></tr>
+          <tr><td><span class="num-highlight">28+</span></td><td>⚡ <strong>مقبول</strong></td></tr>
+          <tr><td><span class="num-highlight">أقل من 28</span></td><td>❌ <strong>ضعيف</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- مقومات النجاح والمعوقات -->
+    <div class="subsec">
+      <div class="subsec-title green">مقومات نجاح الفعالية (9)</div>
+      <ul class="styled-list num">
+        <li>وضوح الهدف من الفعالية</li>
+        <li>خطة علمية وجدول زمني دقيق</li>
+        <li>الوقت المناسب لإقامة الفعالية</li>
+        <li>المكان المناسب والمجهز</li>
+        <li>المرونة في التعامل مع المتغيرات</li>
+        <li>التنسيق بين جميع الجهات</li>
+        <li>خبرة المنظم وكفاءته</li>
+        <li>التسويق الجيد والمبكر</li>
+        <li>توفير راعٍ داعم</li>
       </ul>
     </div>
-  </div>
 
-  <h3 style="margin-top:16px;">أبرز المهرجانات السعودية الدائمة</h3>
-  <div class="grid-3">
-    <div class="card">
-      <h4>🏛️ مهرجان الجنادرية للتراث والثقافة</h4>
-      <p style="font-size:13px;">منذ 1405هـ/1985م، فبراير-مارس. أُسندت إقامته 2019م لوزارة الثقافة. يضم قرية متكاملة للتراث والحلي والأدوات القديمة.</p>
+    <div class="subsec">
+      <div class="subsec-title red">معوقات النجاح (9)</div>
+      <ul class="styled-list red num">
+        <li>غياب المنظم المحترف المتخصص</li>
+        <li>صعوبة الحصول على التراخيص</li>
+        <li>سوء اختيار التوقيت</li>
+        <li>عدم ملاءمة التسهيلات والمرافق</li>
+        <li>سوء اختيار أعضاء الفريق</li>
+        <li>قلة الوقت المخصص للتخطيط</li>
+        <li>غياب التنسيق بين اللجان</li>
+        <li>غياب التقنية وضعف الرقمنة</li>
+        <li>سوء تقدير حجم الجمهور</li>
+      </ul>
     </div>
-    <div class="card">
-      <h4>🐪 مهرجان الملك عبدالعزيز للإبل</h4>
-      <p style="font-size:13px;">سنوي ثقافي واقتصادي ورياضي وترفيهي برعاية ملكية. يهدف لتأصيل تراث الإبل في الثقافة السعودية.</p>
+
+    <div class="subsec">
+      <div class="subsec-title red">الأخطاء الشائعة (6)</div>
+      <ul class="styled-list red num">
+        <li>الاعتماد الكلي على الخبراء الخارجيين دون بناء كفاءات داخلية</li>
+        <li>الاعتقاد بأن أي شخص قادر على إدارة الفعاليات بدون تخصص</li>
+        <li>تعدد الاجتماعات بلا مبرر أو جدول واضح</li>
+        <li>الفصل بين المخططين والمنفذين</li>
+        <li>إهمال التجربة الفعلية والزيارات الميدانية</li>
+        <li>نسب الإنجازات للقائد وحده دون الفريق</li>
+      </ul>
     </div>
-    <div class="card">
-      <h4>🦅 مهرجان الملك عبدالعزيز للصقور</h4>
-      <p style="font-size:13px;">دولي، ينظمه نادي الصقور السعودي. المسابقة الأكبر للصقور في العالم. دخل غينيس 2018م بمشاركة 1723 صقراً. يقام في ملهم شمال الرياض.</p>
+
+    <!-- إدارة الحشود -->
+    <div class="subsec">
+      <div class="subsec-title">إدارة الحشود — 6 مبادئ</div>
+      <ul class="styled-list num">
+        <li><strong>اعرف جمهورك</strong> — خصائصه وتوقعاته وسلوكياته</li>
+        <li><strong>التخطيط المسبق الشامل</strong> — لا مجال للارتجال مع الحشود</li>
+        <li><strong>إبلاغ الجهات الأمنية</strong> — المرور، الدفاع المدني، الهلال الأحمر، الأمن العام، البلدية</li>
+        <li><strong>تقييم المخاطر</strong> — تحديدها ووضع خطط للتعامل معها</li>
+        <li><strong>مراجعة خطة الطوارئ</strong> — مراجعة دورية قبيل الفعالية</li>
+        <li><strong>اللوحات الإرشادية وتبسيط التسجيل</strong> — استخدام QR Code وتقنيات ذكية</li>
+      </ul>
     </div>
-  </div>
-</div>
 
-<!-- ===== CHAPTER 3 - PHASES ===== -->
-<div class="section" id="ch3">
-  <h2><span class="emoji-icon">🔄</span> الفصل الثالث: مراحل إدارة الفعالية (دورة الحياة الكاملة)</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <p style="margin-top:8px;">أشهر المنهجيات عالمياً هو ما قدمته <strong>جامعة جورج واشنطن</strong>: إدارة الفعاليات تتكون من <strong>خمس مراحل أساسية</strong></p>
-  </div>
-
-  <div class="grid-3" style="margin:16px 0;">
-    <div class="phase-box"><div class="num">01</div><div class="title">البحث</div><div class="sub">الاستكشاف وتحديد الجدوى والأسئلة الخمسة</div></div>
-    <div class="phase-box"><div class="num">02</div><div class="title">التصميم</div><div class="sub">الرؤية والهوية البصرية وسمة الفعالية</div></div>
-    <div class="phase-box"><div class="num">03</div><div class="title">التخطيط</div><div class="sub">الميزانية والموارد البشرية والتسويق والجدول الزمني</div></div>
-  </div>
-  <div class="grid-2" style="margin-bottom:16px;">
-    <div class="phase-box"><div class="num">04</div><div class="title">التنفيذ</div><div class="sub">التنسيق الميداني وإدارة الموقع والحشود</div></div>
-    <div class="phase-box"><div class="num">05</div><div class="title">التقييم</div><div class="sub">قياس النتائج وإعداد التقارير لأصحاب المصلحة</div></div>
-  </div>
-
-  <hr>
-
-  <h3>المرحلة الأولى: البحث — الأسئلة الخمسة (5W's)</h3>
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <div class="grid-3" style="margin-top:10px;">
-      <div class="card"><h4>❓ Why — لماذا؟</h4><p>لماذا نقيم هذه الفعالية؟ ما الذي نأمل تحقيقه؟</p></div>
-      <div class="card"><h4>👥 Who — من؟</h4><p>من الجمهور المستهدف؟ كبار الشخصيات؟ الموردون والرعاة؟</p></div>
-      <div class="card"><h4>📋 What — ماذا؟</h4><p>ماذا ستغطي الفعالية؟ ما الرسائل؟ الأهداف؟ الشريحة المستهدفة؟</p></div>
-      <div class="card"><h4>📍 Where — أين؟</h4><p>أين تُقام؟ هل المكان مجهز بالإضاءة والصوتيات؟ مواقف السيارات؟</p></div>
-      <div class="card"><h4>📅 When — متى؟</h4><p>هل الوقت مناسب؟ هل هناك فعاليات ضخمة بنفس التوقيت؟ أعياد وطنية؟</p></div>
+    <!-- إدارة الأزمات -->
+    <div class="subsec">
+      <div class="subsec-title red">إدارة الأزمات — 4 محاور</div>
+      <ul class="styled-list red num">
+        <li><strong>التنبؤ بالمخاطر</strong> — دراسة الاحتمالات قبل وقوعها</li>
+        <li><strong>الإجراءات الوقائية</strong> — اتخاذ خطوات لمنع الأزمات</li>
+        <li><strong>وضع سيناريوهات المواجهة</strong> — خطط بديلة لكل أزمة محتملة</li>
+        <li><strong>التوعية والتدريب</strong> — تأهيل الفريق للتعامل مع الأزمات</li>
+      </ul>
     </div>
-  </div>
 
-  <h3>المرحلة الثانية: التصميم — الرؤية والهوية البصرية</h3>
-  <div class="priority-med">
-    <span class="badge badge-orange">⭐⭐ مهم</span>
-    <div class="grid-2" style="margin-top:10px;">
-      <div>
-        <h4>الرؤية (خارطة الطريق)</h4>
-        <p>وثيقة توضح توجه الفعالية الحالي والمستقبلي. أفضل الممارسات:</p>
-        <ul style="padding-right:18px; font-size:14px; margin-top:8px;">
-          <li>موجزة: بسيطة يمكن حفظها</li>
-          <li>واضحة: تركيز على هدف أساسي واحد</li>
-          <li>موجهة نحو المستقبل</li>
-          <li>ملهمة: عبارات محفزة</li>
-        </ul>
-      </div>
-      <div>
-        <h4>عناصر الهوية البصرية</h4>
-        <ul style="padding-right:18px; font-size:14px; margin-top:8px;">
-          <li><strong>الرسومات:</strong> أصول صور مرسومة/مصممة</li>
-          <li><strong>العبارات والأرقام:</strong> الشعارات اللفظية</li>
-          <li><strong>الطباعة:</strong> شكل النص المستخدم في الشعار</li>
-          <li><strong>لوحة الألوان:</strong> لون أساسي + ثانوي + تمييزي</li>
-          <li><strong>الصور:</strong> محتوى التصوير ومقاطع الفيديو</li>
-        </ul>
-      </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- الفصل الرابع -->
+<!-- ============================================================ -->
+<section class="section" id="ch4">
+  <div class="section-header"><span class="icon">🏟️</span><h2>الفصل الرابع: نماذج تطبيقية — المؤتمرات والدورات الرياضية</h2></div>
+  <div class="section-body">
+
+    <!-- النموذج الأول: المؤتمرات -->
+    <div class="subsec">
+      <div class="subsec-title">النموذج الأول: المؤتمرات والندوات — <span class="num-highlight">9 لجان</span></div>
+      <table>
+        <thead><tr><th>#</th><th>اللجنة</th><th>المهام الرئيسية</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>اللجنة التنظيمية العليا</strong></td><td>الإشراف العام وصنع القرار الاستراتيجي</td></tr>
+          <tr><td>2</td><td><strong>لجنة الإعداد العلمي</strong></td><td>تحكيم الأوراق البحثية، البرنامج العلمي</td></tr>
+          <tr><td>3</td><td><strong>لجنة السكرتارية والتنسيق</strong></td><td>دليل المؤتمر، الترجمة الفورية، التوثيق</td></tr>
+          <tr><td>4</td><td><strong>لجنة العلاقات العامة والضيافة</strong></td><td>المطارات، الفنادق، النقل، استقبال الضيوف</td></tr>
+          <tr><td>5</td><td><strong>اللجنة الإعلامية والتسويقية</strong></td><td>البيانات الصحفية، البث المباشر، التغطية</td></tr>
+          <tr><td>6</td><td><strong>اللجنة الاجتماعية والترفيهية</strong></td><td>الجولات السياحية، حفل الافتتاح والختام</td></tr>
+          <tr><td>7</td><td><strong>اللجنة المالية</strong></td><td>ميزانية تفصيلية تضم <span class="num-highlight">أكثر من 50 بنداً</span></td></tr>
+          <tr><td>8</td><td><strong>اللجنة الفنية واللوجستية</strong></td><td>الهوية البصرية، الصوت والإضاءة والديكور</td></tr>
+          <tr><td>9</td><td><strong>لجنة الأمن والسلامة</strong></td><td>خطة الإخلاء، تنسيق الهلال الأحمر، الأمن</td></tr>
+        </tbody>
+      </table>
     </div>
-  </div>
 
-  <h3>المرحلة الثالثة: التخطيط — الميزانية والموارد البشرية</h3>
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <div class="grid-2" style="margin-top:10px;">
-      <div>
-        <h4>خطوات إعداد ميزانية الفعالية</h4>
-        <ol style="padding-right:20px; font-size:14px;">
-          <li>الاطلاع على ميزانيات الفعاليات السابقة (تسويق 40%، موقع 30%، مواد 30%)</li>
-          <li>الحصول على مصروفات تقديرية من جميع الإدارات (3 عروض أسعار على الأقل)</li>
-          <li>تحديد جميع المصروفات الفعلية والمتوقعة</li>
-          <li>حصر الإيرادات (رعاة + تذاكر + تأجير أجنحة)</li>
-          <li><strong>إعداد ميزانية طوارئ 5% إلى 25% من التكاليف</strong></li>
-        </ol>
+    <!-- النموذج الثاني: الدورات الرياضية -->
+    <div class="subsec">
+      <div class="subsec-title">النموذج الثاني: الدورات الرياضية — 7 خطوات</div>
+      <div class="steps">
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>تشكيل اللجنة العليا</h4><p>تحديد القيادة والمسؤوليات العليا</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>تحديد الغرض من البطولة</h4><p>الهدف، الفئة المستهدفة، المستوى التنافسي</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>التخطيط العام الشامل</h4><p>الجدول الزمني، الميزانية، الموارد المطلوبة</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>تنظيم العمل وتوزيع الصلاحيات</h4><p>الهيكل التنظيمي وتوضيح خطوط الإشراف</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>الإعداد والتجهيز</h4><p>الملاعب والساحات، الحكام والمسؤولون الفنيون، الأدوات والمعدات</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>الإقامة والإعاشة</h4><p>تجهيزات السكن والتغذية للمشاركين</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>التقويم والتقييم</h4><p>قياس النتائج واستخلاص الدروس للتحسين</p></div></div>
       </div>
-      <div>
-        <h4>خطوات تخطيط الموارد البشرية</h4>
-        <ol style="padding-right:20px; font-size:14px;">
-          <li>تحديد ميزانية الموارد البشرية</li>
-          <li>إعداد الهيكل التنظيمي</li>
-          <li>كتابة الوصف الوظيفي</li>
-          <li>اختيار فريق العمل (الأولوية للمهارات والمعرفة)</li>
-        </ol>
-        <h4 style="margin-top:12px;">مخطط جانت (Gantt Chart)</h4>
-        <p style="font-size:14px;">صممه <strong>هنري جانت</strong>. أداة تخطيط بصرية تُظهر المهام على محور زمني. يستخدم لـ: تنظيم المهام، تحديد المسؤوليات، رصد التقدم، إدارة الموارد، التنسيق بين الفرق، التخطيط للطوارئ.</p>
-      </div>
+
+      <p style="font-size:.88rem;font-weight:600;margin:.8rem 0 .5rem;">لجان الدورات الرياضية:</p>
+      <ul class="styled-list">
+        <li>اللجنة العليا ومدير البطولة — القرار النهائي</li>
+        <li>لجنة الملاعب والأدوات — الجاهزية التقنية</li>
+        <li>لجنة الإعلام والتسويق — التغطية والترويج</li>
+        <li>لجنة السكرتارية الفنية — التوثيق والنتائج</li>
+        <li>لجنة المراسم والتتويج — حفلات التكريم</li>
+        <li>لجنة العلاقات العامة والمواصلات — الضيافة والتنقل</li>
+      </ul>
     </div>
-  </div>
-</div>
 
-<!-- ===== ANALYTICAL TOOLS ===== -->
-<div class="section" id="tools">
-  <h2><span class="emoji-icon">🔍</span> الأدوات التحليلية: SWOT و PESTEL</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">تحليل SWOT</h3>
-    <p style="margin-bottom:12px;">الفرصة لتعريف التحديات والمخاطر قبل البداية في تصميم الحدث. تُستخدم في جميع قطاعات الأعمال لتوقع المشكلات وخيارات الحلول.</p>
-    <div class="swot-grid">
-      <div class="swot-box swot-s">
-        <h4>💪 نقاط القوة (S)</h4>
-        <ul><li>السمات الداخلية المميزة</li><li>شهرة الحدث</li><li>دعم الرعاة</li><li>موقع جذاب</li></ul>
-      </div>
-      <div class="swot-box swot-w">
-        <h4>⚠️ نقاط الضعف (W)</h4>
-        <ul><li>العوامل الداخلية المعيقة</li><li>نقص الموارد المالية</li><li>قلة الخبرة في التنظيم</li></ul>
-      </div>
-      <div class="swot-box swot-o">
-        <h4>🌱 الفرص (O)</h4>
-        <ul><li>الظروف الخارجية المفيدة</li><li>زيادة الاهتمام بالرياضة</li><li>التوسع في أسواق جديدة</li></ul>
-      </div>
-      <div class="swot-box swot-t">
-        <h4>⚡ التهديدات (T)</h4>
-        <ul><li>العوامل الخارجية المعيقة</li><li>المنافسة من فعاليات أخرى</li><li>تقلبات الاقتصاد</li></ul>
+    <!-- حفل الافتتاح -->
+    <div class="subsec">
+      <div class="subsec-title">⭐ فقرات حفل الافتتاح الرسمي — <span class="num-highlight">6 فقرات بالترتيب</span></div>
+      <div class="highlight red"><strong>⚠️ الترتيب بالغ الأهمية — احفظه بعناية!</strong></div>
+      <div class="steps">
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>🎵 عزف السلام الوطني / الملكي</h4><p>يُفتتح به الحفل رسمياً</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>🚶 دخول طابور عرض الوفود</h4><p><strong>البلد المضيف أولاً</strong> ← ثم اللجنة التنظيمية ← ثم الوفود حسب <strong>الترتيب الأبجدي</strong></p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>📖 تلاوة آيات من الذكر الحكيم</h4><p>في الدول العربية والإسلامية</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>🎤 كلمات الترحيب الرسمية</h4><p>كلمة المنظمين ثم المسؤولين</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>🤝 قسم البطولة ورفع العلم</h4><p>تعهد بالروح الرياضية النظيفة</p></div></div>
+        <div class="step"><div class="step-num"></div><div class="step-body"><h4>🏅 إعلان الافتتاح الرسمي</h4><p>من كبار المسؤولين المكلفين</p></div></div>
       </div>
     </div>
-  </div>
 
-  <div class="priority-med" style="margin-top:16px;">
-    <span class="badge badge-orange">⭐⭐ مهم</span>
-    <h3 style="margin-top:8px;">تحليل PESTEL</h3>
-    <p>أداة لفهم العوامل الخارجية المؤثرة على بيئة الفعالية:</p>
-    <table style="margin-top:10px;">
-      <tr><th>الحرف</th><th>العامل</th><th>مثال سعودي</th></tr>
-      <tr><td><strong>P</strong></td><td>Political (سياسي)</td><td>دعم القيادة السعودية للفعاليات الكبرى — الأقوى تأثيراً</td></tr>
-      <tr><td><strong>E</strong></td><td>Economic (اقتصادي)</td><td>رؤية 2030 محرك اقتصادي قوي لاستضافة الفعاليات الدولية</td></tr>
-      <tr><td><strong>S</strong></td><td>Social (اجتماعي)</td><td>زيادة الوعي بأهمية الرياضة، تنامي مشاركة المرأة</td></tr>
-      <tr><td><strong>T</strong></td><td>Technological (تكنولوجي)</td><td>منصات التواصل، تطبيقات ذكية، تسجيل إلكتروني</td></tr>
-      <tr><td><strong>E</strong></td><td>Environmental (بيئي)</td><td>الطقس الحار في الرياض وجدة</td></tr>
-      <tr><td><strong>L</strong></td><td>Legal (قانوني)</td><td>حقوق الملكية الفكرية، اشتراطات الترخيص</td></tr>
+    <!-- إجراءات الاستضافة الدولية -->
+    <div class="subsec">
+      <div class="subsec-title">إجراءات استضافة الفعاليات الدولية — 4 مراحل</div>
+      <div class="flow" style="flex-direction:column;align-items:flex-start;gap:.5rem;">
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="background:var(--navy);color:var(--gold);padding:.3rem .8rem;border-radius:6px;font-weight:700;font-size:.85rem;">1</span><span style="font-size:.9rem;"><strong>تقديم ملف الترشح:</strong> تقديم الملف للجهة الدولية المعنية</span></div>
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="background:var(--navy);color:var(--gold);padding:.3rem .8rem;border-radius:6px;font-weight:700;font-size:.85rem;">2</span><span style="font-size:.9rem;"><strong>التفتيش والتقييم الميداني:</strong> زيارة اللجنة الدولية للمرافق</span></div>
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="background:var(--navy);color:var(--gold);padding:.3rem .8rem;border-radius:6px;font-weight:700;font-size:.85rem;">3</span><span style="font-size:.9rem;"><strong>التصويت ومنح الاستضافة:</strong> قرار الهيئة الدولية</span></div>
+        <div style="display:flex;align-items:center;gap:.7rem;"><span style="background:var(--navy);color:var(--gold);padding:.3rem .8rem;border-radius:6px;font-weight:700;font-size:.85rem;">4</span><span style="font-size:.9rem;"><strong>التخطيط والتنفيذ:</strong> بدء الاستعدادات الفعلية</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- الفصل الخامس -->
+<!-- ============================================================ -->
+<section class="section" id="ch5">
+  <div class="section-header"><span class="icon">🎓</span><h2>الفصل الخامس: الدورات التدريبية</h2></div>
+  <div class="section-body">
+
+    <div class="subsec">
+      <div class="subsec-title">أهداف التدريب (5)</div>
+      <ul class="styled-list num">
+        <li>زيادة الإنتاجية وتحسين الأداء</li>
+        <li>تنمية القدرات والكفاءات الفردية</li>
+        <li>تغيير السلوك نحو الأفضل</li>
+        <li>مسايرة التقنية ومواكبة التطور</li>
+        <li>إكساب الثقة بالنفس والكفاءة</li>
+      </ul>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">مراحل تنظيم الدورة التدريبية</div>
+      <div class="cards">
+        <div class="card">
+          <h4>⬅️ قبل الدورة</h4>
+          <ul>
+            <li>إرسال خطابات الدعوة</li>
+            <li>تجهيز الأماكن والقاعات</li>
+            <li>إعداد خطط الجلسات</li>
+            <li>تجهيز ملفات المتدربين</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>🔄 أثناء الدورة</h4>
+          <ul>
+            <li>تنظيم وتهيئة القاعة</li>
+            <li>تلخيص يومي للمحتوى</li>
+            <li>إدارة الحضور والغياب</li>
+            <li>توزيع الشهادات</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>➡️ بعد الدورة</h4>
+          <ul>
+            <li>توزيع القائمة النهائية</li>
+            <li>نقل الوسائل والمواد</li>
+            <li>دفع التكاليف والمستحقات</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">بيئة التدريب — 4 عناصر</div>
+      <div class="cards">
+        <div class="card"><h4>💺 شكل الجلوس</h4><p>اختيار الترتيب المناسب للهدف (مسرح، U، مجموعات)</p></div>
+        <div class="card"><h4>🌬️ التهوية والإضاءة</h4><p>بيئة مريحة تُعزز التركيز والمشاركة</p></div>
+        <div class="card"><h4>💻 الأجهزة التقنية</h4><p>شاشة العرض، الكمبيوتر، الميكروفون</p></div>
+        <div class="card"><h4>📎 الملحقات</h4><p>الأقلام، الورق، المواد التدريبية</p></div>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">إدارة بداية جلسة التدريب</div>
+      <div class="flow">
+        <div class="flow-step">التعارف</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">تقديم الدورة</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">الإجراءات الإدارية</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">الارتياح والتهيئة</div>
+      </div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">إدارة نهاية جلسة التدريب</div>
+      <div class="flow">
+        <div class="flow-step">نشاط ختامي</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">تقييم نهائي</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-step">تقييم الدورة</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- أسئلة MCQ -->
+<!-- ============================================================ -->
+<section class="section" id="mcq">
+  <div class="section-header"><span class="icon">🎯</span><h2>أسئلة MCQ التفاعلية — 20 سؤالاً</h2></div>
+  <div class="section-body">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">اضغط على الإجابة لمعرفة النتيجة فوراً 👆</p>
+    <div id="mcq-container"></div>
+    <div style="margin-top:1.2rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+      <button onclick="showAllAnswers()" style="background:var(--navy);color:var(--gold2);border:none;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:600;">🔍 إظهار جميع الإجابات</button>
+      <button onclick="resetMCQ()" style="background:var(--cream2);color:var(--navy);border:none;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:600;">🔄 إعادة المحاولة</button>
+      <span id="score-display" style="padding:.5rem 1rem;border-radius:8px;font-weight:700;font-size:.9rem;"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- أسئلة صح وخطأ -->
+<!-- ============================================================ -->
+<section class="section" id="tf">
+  <div class="section-header"><span class="icon">✅</span><h2>أسئلة صح وخطأ — 15 سؤالاً</h2></div>
+  <div class="section-body">
+    <div id="tf-container"></div>
+    <div style="margin-top:1rem;">
+      <button onclick="showAllTF()" style="background:var(--accent);color:white;border:none;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:600;">🔍 إظهار جميع الإجابات</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- أسئلة مقالية -->
+<!-- ============================================================ -->
+<section class="section" id="essay">
+  <div class="section-header"><span class="icon">✍️</span><h2>أسئلة مقالية متوقعة — 10 أسئلة</h2></div>
+  <div class="section-body">
+    <div id="essay-container"></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Cheat Sheet -->
+<!-- ============================================================ -->
+<section class="section" id="cheat">
+  <div class="section-header"><span class="icon">⚡</span><h2>Cheat Sheet — المراجعة السريعة الشاملة</h2></div>
+  <div class="section-body">
+    <div class="highlight red" style="margin-bottom:1.2rem;">
+      <strong>⭐ أهم الأرقام للحفظ — ستأتي في الاختبار:</strong>
+    </div>
+    <div class="cheat-grid" id="cheat-container"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- قائمة التحقق 65 عنصراً كاملة -->
+<!-- ============================================================ -->
+<section class="section" id="checklist65">
+  <div class="section-header"><span class="icon">📋</span><h2>قائمة التحقق الشاملة — 65 عنصراً في 10 محاور</h2></div>
+  <div class="section-body">
+    <div class="highlight">
+      <strong>مفتاح التقييم:</strong>
+      <span class="num-highlight">58-65</span> ممتاز &nbsp;|&nbsp;
+      <span class="num-highlight">48-57</span> جيد جداً &nbsp;|&nbsp;
+      <span class="num-highlight">38-47</span> جيد &nbsp;|&nbsp;
+      <span class="num-highlight">28-37</span> مقبول &nbsp;|&nbsp;
+      <span class="num-highlight">أقل من 28</span> ضعيف
+    </div>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>#</th><th>العنصر</th><th>المحور</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>الإعلان عن الفعالية قبل وقت كافٍ من حدوثها</td><td rowspan="7">التخطيط والتنظيم</td></tr>
+        <tr><td>2</td><td>إبلاغ المشاركين بالهدف من الفعالية بوضوح</td></tr>
+        <tr><td>3</td><td>إعداد جدول أعمال مسبق للفعالية وتوزيعه على الحضور</td></tr>
+        <tr><td>4</td><td>توقيت الفعالية مناسب لأغلبية المشاركين</td></tr>
+        <tr><td>5</td><td>إعداد ميزانية تفصيلية ومعتمدة للفعالية</td></tr>
+        <tr><td>6</td><td>تشكيل لجان عمل متخصصة بمهام واضحة</td></tr>
+        <tr><td>7</td><td>المكان مريح ومزود بالتجهيزات المناسبة</td></tr>
+        <tr><td>8</td><td>توافر اللوحات الإرشادية للوصول للموقع وداخله</td><td rowspan="8">الموقع والمرافق</td></tr>
+        <tr><td>9</td><td>توافر مواقف سيارات كافية ومنظمة</td></tr>
+        <tr><td>10</td><td>توافر دورات مياه نظيفة وكافية للحضور</td></tr>
+        <tr><td>11</td><td>جودة أنظمة الصوت والإضاءة والعرض</td></tr>
+        <tr><td>12</td><td>توافر مناطق استراحة وضيافة مناسبة</td></tr>
+        <tr><td>13</td><td>سهولة الوصول للموقع ووضوح العنوان</td></tr>
+        <tr><td>14</td><td>توافر مرافق خاصة لذوي الإعاقة</td></tr>
+        <tr><td>15</td><td>توافر وسائل السلامة والرعاية الطبية</td></tr>
+        <tr><td>16</td><td>وجود خطة إخلاء واضحة ومعلنة</td><td rowspan="6">الأمن والسلامة</td></tr>
+        <tr><td>17</td><td>توافر طفايات الحريق وأجهزة الإنذار</td></tr>
+        <tr><td>18</td><td>وجود فريق أمني كافٍ ومدرب</td></tr>
+        <tr><td>19</td><td>التنسيق المسبق مع الجهات الأمنية والطبية</td></tr>
+        <tr><td>20</td><td>توافر مخارج طوارئ واضحة ومضاءة</td></tr>
+        <tr><td>21</td><td>إجراء تقييم مخاطر شامل قبل الفعالية</td></tr>
+        <tr><td>22</td><td>سهولة إجراءات التسجيل والدخول</td><td rowspan="6">الاستقبال والتسجيل</td></tr>
+        <tr><td>23</td><td>وضوح بطاقات التعريف والتذاكر</td></tr>
+        <tr><td>24</td><td>احترافية فريق الاستقبال والترحيب</td></tr>
+        <tr><td>25</td><td>توافر دليل إرشادي شامل للمشاركين</td></tr>
+        <tr><td>26</td><td>تنظيم عملية توزيع الحقائب والمواد</td></tr>
+        <tr><td>27</td><td>استخدام التقنية في التسجيل (QR Code، تطبيقات)</td></tr>
+        <tr><td>28</td><td>بدأت الفعالية في الوقت المحدد لها</td><td rowspan="8">المحتوى والبرنامج</td></tr>
+        <tr><td>29</td><td>جودة المحتوى العلمي أو الرياضي المقدم</td></tr>
+        <tr><td>30</td><td>مناسبة مدة الفعالية (لا طويلة ولا قصيرة)</td></tr>
+        <tr><td>31</td><td>تنوع الفقرات والأنشطة المقدمة</td></tr>
+        <tr><td>32</td><td>كفاءة المتحدثين أو المدربين أو الرياضيين</td></tr>
+        <tr><td>33</td><td>التزام البرنامج بالجدول الزمني المعلن</td></tr>
+        <tr><td>34</td><td>توافر فترات استراحة كافية بين الجلسات</td></tr>
+        <tr><td>35</td><td>جودة المواد التدريبية أو الإعلامية الموزعة</td></tr>
+        <tr><td>36</td><td>وجود مركز إعلامي في الفعالية وتنسيق مع وسائل الإعلام</td><td rowspan="6">الإعلام والتسويق</td></tr>
+        <tr><td>37</td><td>فعالية الحملة التسويقية قبل الفعالية</td></tr>
+        <tr><td>38</td><td>جودة التغطية الإعلامية أثناء الفعالية</td></tr>
+        <tr><td>39</td><td>نشاط منصات التواصل الاجتماعي الرسمية</td></tr>
+        <tr><td>40</td><td>جودة التصوير والتوثيق الرسمي</td></tr>
+        <tr><td>41</td><td>توافر البث المباشر للفعالية (إن وجد)</td></tr>
+        <tr><td>42</td><td>الهيكل التنظيمي لإدارة الفعالية محدد وواضح</td><td rowspan="6">الإدارة والتشغيل</td></tr>
+        <tr><td>43</td><td>التنسيق الفعّال بين اللجان المختلفة</td></tr>
+        <tr><td>44</td><td>سرعة الاستجابة لحل المشكلات الطارئة</td></tr>
+        <tr><td>45</td><td>احترافية إدارة الحشود والتنقلات</td></tr>
+        <tr><td>46</td><td>وضوح الأدوار والمسؤوليات لكل فريق</td></tr>
+        <tr><td>47</td><td>توافر غرفة عمليات مركزية للمتابعة</td></tr>
+        <tr><td>48</td><td>جودة التواصل الداخلي بين الفرق</td><td rowspan="7">الخدمات والضيافة</td></tr>
+        <tr><td>49</td><td>جودة خدمات الضيافة والطعام المقدمة</td></tr>
+        <tr><td>50</td><td>توافر خدمات الترجمة الفورية (للفعاليات الدولية)</td></tr>
+        <tr><td>51</td><td>جودة خدمات النقل والمواصلات</td></tr>
+        <tr><td>52</td><td>توافر خدمة الإنترنت اللاسلكي (WiFi)</td></tr>
+        <tr><td>53</td><td>جودة الهدايا التذكارية والشهادات</td></tr>
+        <tr><td>54</td><td>توافر خدمات خاصة لكبار الشخصيات (VIP)</td></tr>
+        <tr><td>55</td><td>مستوى تفاعل الحضور مع الفعالية</td><td rowspan="6">تجربة المشاركين</td></tr>
+        <tr><td>56</td><td>توافر فرص للتواصل والتشبيك بين المشاركين</td></tr>
+        <tr><td>57</td><td>جودة الأنشطة الاجتماعية والترفيهية</td></tr>
+        <tr><td>58</td><td>فعالية جلسات الأسئلة والنقاش</td></tr>
+        <tr><td>59</td><td>رضا المشاركين العام عن الفعالية</td></tr>
+        <tr><td>60</td><td>استعداد المشاركين للتوصية بالفعالية للآخرين</td></tr>
+        <tr><td>61</td><td>توزيع استبيانات تقييم على المشاركين</td><td rowspan="5">التقييم والمتابعة</td></tr>
+        <tr><td>62</td><td>إعداد تقرير ختامي شامل للفعالية</td></tr>
+        <tr><td>63</td><td>توثيق الدروس المستفادة للفعاليات القادمة</td></tr>
+        <tr><td>64</td><td>متابعة ما بعد الفعالية مع المشاركين</td></tr>
+        <tr><td>65</td><td>قياس تحقيق الأهداف المحددة مسبقاً</td></tr>
+      </tbody>
     </table>
   </div>
+</section>
 
-  <div class="priority-high" style="margin-top:16px;">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">الأهداف الذكية SMART</h3>
-    <p style="margin-bottom:10px;">أول من استخدم هذا المصطلح هو <strong>الدكتور جورج دوران</strong>. يُستخدم في وضع الأهداف على مستوى الشركات والمشاريع والأفراد.</p>
-    <div class="grid-3">
-      <div class="card"><h4>S — Specific (محدد)</h4><p>امتلاك التصور الواضح للهدف من جميع جوانبه</p></div>
-      <div class="card"><h4>M — Measurable (قابل للقياس)</h4><p>قياس الهدف ذاته أو قياس درجة الإنجاز</p></div>
-      <div class="card"><h4>A — Attainable (قابل للتحقيق)</h4><p>أهداف سهلة التحقيق دون مغالاة</p></div>
-      <div class="card"><h4>R — Relevant (مرتبط بالموضوع)</h4><p>هل يعتبر الهدف عاملاً مهماً في الفعالية؟</p></div>
-      <div class="card"><h4>T — Timely (محدد زمنياً)</h4><p>وقت تبدأ فيه العمل ووقت تنهيه</p></div>
-    </div>
+<!-- ============================================================ -->
+<!-- الفعاليات التي استضافتها المملكة -->
+<!-- ============================================================ -->
+<section class="section" id="ksa-events">
+  <div class="section-header"><span class="icon">🏅</span><h2>نماذج من الفعاليات الرياضية التي استضافتها المملكة</h2></div>
+  <div class="section-body">
+    <div class="highlight blue" style="margin-bottom:1rem;">نشطت المملكة في استضافة الأحداث والبطولات الرياضية المتنوعة لتؤكد مكانتها وإمكاناتها.</div>
+    <table>
+      <thead><tr><th>#</th><th>الفعالية</th><th>التفاصيل</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>بطولة سباق الأبطال للسيارات</strong></td><td>على استاد الملك فهد الدولي بمدينة الرياض</td></tr>
+        <tr><td>2</td><td><strong>ماراثون الرياض الدولي</strong></td><td>نظمته وزارة الرياضة بجامعة الملك سعود لكافة الجنسيات والأعمار</td></tr>
+        <tr><td>3</td><td><strong>كأس السوبر الإيطالي</strong></td><td>(يوفنتوس وميلان) على ملعب مدينة الملك عبدالله الرياضية في جدة</td></tr>
+        <tr><td>4</td><td><strong>فعاليات فورمولا إي (Formula E)</strong></td><td>في الدرعية بالعاصمة الرياض</td></tr>
+        <tr><td>5</td><td><strong>كأس السوبر الإسباني</strong></td><td>بين ريال مدريد وأتلتيكو مدريد في مدينة جدة</td></tr>
+        <tr><td>6</td><td><strong>مهرجان ولي العهد للهجن الثاني</strong></td><td>بالطائف بمشاركة أكثر من <span class="num-highlight">13 ألف هجن</span> — دخل موسوعة غينيس</td></tr>
+        <tr><td>7</td><td><strong>بطولة العالم للأندية لكرة اليد «السوبر جلوبال»</strong></td><td>بالمنطقة الشرقية بمشاركة <span class="num-highlight">10</span> أندية تمثل أبطال القارات</td></tr>
+        <tr><td>8</td><td><strong>بطولة الوزن الثقيل في الملاكمة</strong></td><td>بين أندي روبز جونيور وأنتوني جوشوا — أول بطولة من نوعها في الشرق الأوسط بالدرعية</td></tr>
+      </tbody>
+    </table>
   </div>
-</div>
+</section>
 
-<!-- ===== MARKETING ===== -->
-<div class="section">
-  <h2><span class="emoji-icon">📣</span> التسويق وملف الرعاة</h2>
-  <div class="priority-med">
-    <span class="badge badge-orange">⭐⭐ مهم</span>
-    <h3 style="margin-top:8px;">المزيج التسويقي الرباعي (4P's)</h3>
-    <div class="grid-4">
-      <div class="card"><h4>🎯 Product (المنتج)</h4><p style="font-size:13px;">الفعالية والأنشطة المصاحبة لها — فهم مراحلها والمشكلات التي تحلها</p></div>
-      <div class="card"><h4>💰 Price (السعر)</h4><p style="font-size:13px;">معرفة كل الجوانب المالية ودراسة أسعار الفعاليات المشابهة</p></div>
-      <div class="card"><h4>📍 Place (المكان)</h4><p style="font-size:13px;">يعكس مكانة الفعالية وقيمتها، يجب أن يكون قريباً من الجمهور ومزودي الخدمة</p></div>
-      <div class="card"><h4>📢 Promotion (الترويج)</h4><p style="font-size:13px;">علاقات عامة + تسويق رقمي + تقليدي + الاستفادة من المتحدثين</p></div>
-    </div>
+<!-- ============================================================ -->
+<!-- النموذج التطبيقي المتكامل -->
+<!-- ============================================================ -->
+<section class="section" id="applied-model">
+  <div class="section-header"><span class="icon">🔰</span><h2>نموذج تطبيقي متكامل: تنظيم بطولة رياضية سعودية</h2></div>
+  <div class="section-body">
+    <div class="highlight blue" style="margin-bottom:1rem;">نموذج يجمع جميع مراحل إدارة الفعاليات مطبقاً على تنظيم بطولة رياضية محلية في المملكة العربية السعودية</div>
+    <table>
+      <thead><tr><th>المرحلة</th><th>التطبيق على البطولة</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>1. البحث</strong></td>
+          <td>تحديد نوع البطولة وحجمها (محلية/إقليمية)، الإجابة على الأسئلة الخمسة 5W's، إجراء تحليل SWOT لتحديد نقاط القوة والضعف والفرص والتهديدات، وتحليل PESTEL للعوامل الخارجية المؤثرة في البيئة السعودية</td>
+        </tr>
+        <tr>
+          <td><strong>2. التصميم</strong></td>
+          <td>كتابة رؤية البطولة وقيمها، تصميم الهوية البصرية (الشعار، الألوان، الطباعة، لوحة الألوان)، وتصميم سمة البطولة التي تعكس الهوية الوطنية السعودية</td>
+        </tr>
+        <tr>
+          <td><strong>3. التخطيط</strong></td>
+          <td>إعداد ميزانية البطولة مع احتياطي طوارئ 10%، بناء الهيكل التنظيمي وتشكيل اللجان المتخصصة، إعداد مخطط جانت للجدول الزمني، وإعداد ملف الرعاة والداعمين</td>
+        </tr>
+        <tr>
+          <td><strong>4. التنفيذ</strong></td>
+          <td>تقسيم موقع البطولة إلى تسع مناطق، تنفيذ الهوية البصرية على الموقع، تفعيل خطة إدارة الحشود، وتشغيل جدول البطولة بكل تفاصيله</td>
+        </tr>
+        <tr>
+          <td><strong>5. التقييم</strong></td>
+          <td>تطبيق قائمة التقييم المكونة من 46 عنصراً وقائمة 65 عنصراً، جمع البيانات الكمية والنوعية، إعداد التقارير المتنوعة لأصحاب المصلحة، وتوثيق الدروس المستفادة للفعاليات القادمة</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
-
-<!-- ===== EXECUTION ===== -->
-<div class="section" id="execution">
-  <h2><span class="emoji-icon">⚙️</span> المرحلة الرابعة: التنفيذ — تقسيم موقع الفعالية</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <p style="margin-top:8px;">التقسيم في الغالب لا يخرج عن تسع مناطق. المناطق الست الأساسية الأكثر ارتباطاً بالتشغيل:</p>
-  </div>
-
-  <div class="zones-grid" style="margin:16px 0;">
-    <div class="zone-card">
-      <div class="zone-num">01</div>
-      <div class="zone-name">التحكم والسيطرة</div>
-      <div class="zone-desc">المركز العصبي — اتصالات + مراقبة + طوارئ</div>
-    </div>
-    <div class="zone-card">
-      <div class="zone-num">02</div>
-      <div class="zone-name">الاستقبال</div>
-      <div class="zone-desc">البوابة الأولى — الانطباع الأول للزوار</div>
-    </div>
-    <div class="zone-card">
-      <div class="zone-num">03</div>
-      <div class="zone-name">التسجيل</div>
-      <div class="zone-desc">بطاقات الدخول + QR Code + ذوو الإعاقة</div>
-    </div>
-    <div class="zone-card">
-      <div class="zone-num">04</div>
-      <div class="zone-name">الضيافة</div>
-      <div class="zone-desc">الطعام والشراب والبوفيهات المفتوحة</div>
-    </div>
-    <div class="zone-card">
-      <div class="zone-num">05</div>
-      <div class="zone-name">العرض والتقديم</div>
-      <div class="zone-desc">المسرح الرئيسي — صوت + إضاءة + هوية بصرية</div>
-    </div>
-    <div class="zone-card">
-      <div class="zone-num">06</div>
-      <div class="zone-name">كبار الشخصيات (VIP)</div>
-      <div class="zone-desc">خدمات متميزة + إتيكيت + مدخل ومخرج خاص</div>
-    </div>
-  </div>
-
-  <h3>المناطق الإضافية الحيوية</h3>
-  <div class="grid-3">
-    <div class="card">
-      <h4>منطقة الزوار (7)</h4>
-      <p style="font-size:13px;">الأكثر ازدحاماً. متطلبات: مسارات واضحة، لافتات بالعربية والإنجليزية، مخارج طوارئ، الطاقة الاستيعابية القصوى.</p>
-    </div>
-    <div class="card">
-      <h4>دورات المياه (8)</h4>
-      <p style="font-size:13px;"><strong>المعيار:</strong> دورة مياه لكل 50-75 شخصاً. فصل تام بين الرجال والنساء. تفتيش دوري كل 30 دقيقة.</p>
-    </div>
-    <div class="card">
-      <h4>مواقف السيارات (9)</h4>
-      <p style="font-size:13px;">مواقف مرقمة بألوان مختلفة، VIP Valet، Shuttle Bus من مواقف بعيدة، تنسيق مع الجهات الأمنية.</p>
-    </div>
-  </div>
-
-  <div class="priority-high" style="margin-top:16px;">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">إدارة الحشود — 5 مبادئ أساسية</h3>
-    <div class="grid-3">
-      <div class="card"><h4>1. اعرف جمهورك</h4><p style="font-size:13px;">جمهور كرة القدم ≠ زوار معرض كتاب. فهم الجمهور يحدد مستوى إدارة الحشود المطلوب</p></div>
-      <div class="card"><h4>2. التخطيط المسبق الشامل</h4><p style="font-size:13px;">جزء أصيل من تخطيط الفعالية منذ البداية وليس إضافة لاحقة</p></div>
-      <div class="card"><h4>3. إبلاغ الجهات ذات العلاقة</h4><p style="font-size:13px;">المرور، الدفاع المدني، الهلال الأحمر، الأمن العام، البلدية</p></div>
-      <div class="card"><h4>4. تقييم شامل للمخاطر</h4><p style="font-size:13px;">حرائق، أمطار، تزاحم، شجارات، حوادث طبية</p></div>
-      <div class="card"><h4>5. اللوحات الإرشادية</h4><p style="font-size:13px;">التسجيل المسبق الرقمي + QR Code + تطبيق ذكي لتقليل الازدحام</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== CHAPTER 4 - EVALUATION ===== -->
-<div class="section" id="evaluation">
-  <h2><span class="emoji-icon">📊</span> الفصل الرابع والخامس: التقييم والتقارير</h2>
-
-  <div class="priority-high">
-    <span class="badge badge-red">⭐⭐⭐ مهم جداً</span>
-    <h3 style="margin-top:8px;">مرحلة التقييم</h3>
-    <div class="grid-2">
-      <div>
-        <h4>الجانب الكمي للتقييم</h4>
-        <ul style="font-size:14px; padding-right:18px;">
-          <li>هل المبلغ المُنفق حقق الإيرادات المطلوبة؟</li>
-          <li>هل وصل عدد الزوار الفعليين الأعداد المتوقعة؟</li>
-          <li>هل الفعالية حققت زيادة في عدد المتابعين؟</li>
-        </ul>
-        <h4 style="margin-top:10px;">الجانب النوعي للتقييم</h4>
-        <ul style="font-size:14px; padding-right:18px;">
-          <li>مدى تفاعل الجمهور مع الفعالية</li>
-          <li>نسبة الزوار الذين سيكررون الزيارة</li>
-        </ul>
-      </div>
-      <div>
-        <h4>مفتاح الإجابات — مستوى جودة الفعالية</h4>
-        <p style="font-size:13px; margin:8px 0 4px;">بعد تطبيق قائمة التقييم (46 عنصراً):</p>
-        <table style="font-size:13px;">
-          <tr><td><strong>40-46</strong></td><td>جودة عالية ✅</td></tr>
-          <tr><td><strong>30-40</strong></td><td>جودة متوسطة ⚠️</td></tr>
-          <tr><td><strong>أقل من 30</strong></td><td>أداء ضعيف ❌</td></tr>
-        </table>
-        <p style="font-size:12px; margin-top:8px; color:#666;">قائمة التحقق الشاملة: 65 عنصراً في 10 محاور. 58-65 = ممتاز | 48-57 = جيد جداً | 38-47 = جيد | 28-37 = مقبول | أقل من 28 = ضعيف</p>
-      </div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:16px;">أنواع التقارير الواجب إعدادها</h3>
-  <div class="grid-2">
-    <ul style="font-size:14px; padding-right:20px; line-height:2;">
-      <li>تقرير نتائج الفعالية لأصحاب المصلحة</li>
-      <li>تقرير لوسائل الإعلام عن النتائج والإنجازات</li>
-    </ul>
-    <ul style="font-size:14px; padding-right:20px; line-height:2;">
-      <li>تقرير الممارسات الإيجابية والسلبية</li>
-      <li>رسائل شكر للموظفين والمشاركين</li>
-    </ul>
-  </div>
-
-  <h3>محتوى التقرير الاحترافي</h3>
-  <div class="priority-low">
-    <span class="badge badge-green">للمراجعة السريعة</span>
-    <ol style="padding-right:20px; font-size:14px; margin-top:8px; line-height:2;">
-      <li>ملخص تنفيذي للفعالية وأبرز نتائجها</li>
-      <li>تعريف بالفعالية وأهدافها</li>
-      <li>عناصر بصرية (رسوم بيانية، صور)</li>
-      <li>قائمة ببرامج الفعالية والأنشطة المصاحبة</li>
-      <li>المعلومات المالية (نفقات + إيرادات)</li>
-      <li>التوصيات العامة والتحسينات</li>
-      <li>خاتمة للتقرير</li>
-    </ol>
-  </div>
-
-  <hr>
-
-  <h3>إدارة الأزمات</h3>
-  <div class="grid-4">
-    <div class="card"><h4>1. التنبؤ بالمخاطر</h4><p style="font-size:13px;">تحديد الأزمات المتوقعة وتحليلها تحليلاً دقيقاً شاملاً</p></div>
-    <div class="card"><h4>2. الإجراءات الوقائية</h4><p style="font-size:13px;">اتخاذ الإجراءات الكفيلة بتنفيذ الخطة وتوفير المعدات اللازمة</p></div>
-    <div class="card"><h4>3. إعداد السيناريوهات</h4><p style="font-size:13px;">السيناريو = الأسلوب الناجح لإعداد خطط المواجهة واختبار كفاءة أدائها</p></div>
-    <div class="card"><h4>4. التوعية والتدريب</h4><p style="font-size:13px;">تدريب فرق على الإسعافات الأولية وتنفيذ السيناريوهات المعدة</p></div>
-  </div>
-
-  <hr>
-
-  <h3>مقومات النجاح ومعوقاته</h3>
-  <div class="grid-2">
-    <div>
-      <h4 style="color: #27ae60; margin-bottom:8px;">✅ مقومات النجاح</h4>
-      <ul style="font-size:14px; padding-right:18px; line-height:1.9;">
-        <li>وضوح الهدف وتحديد الفئة المستهدفة</li>
-        <li>وضع خطة علمية مدروسة وجدول زمني</li>
-        <li>اختيار الوقت والمكان المناسبين</li>
-        <li>المرونة والقدرة على الاستجابة للمتغيرات</li>
-        <li>التنسيق الجيد بين أعضاء الفريق</li>
-        <li>خبرة المنظم وحسن اختيار الأعضاء</li>
-        <li>التسويق الجيد وتوفير الراعي</li>
-      </ul>
-    </div>
-    <div>
-      <h4 style="color: #c0392b; margin-bottom:8px;">❌ معوقات النجاح</h4>
-      <ul style="font-size:14px; padding-right:18px; line-height:1.9;">
-        <li>غياب المنظم المحترف والكفاءات المناسبة</li>
-        <li>صعوبة الحصول على التراخيص</li>
-        <li>سوء اختيار الوقت والمكان</li>
-        <li>عدم ملاءمة التسهيلات والإمكانات</li>
-        <li>غياب التنسيق بين الأعضاء</li>
-        <li>غياب التقنية أو من يتعامل معها</li>
-        <li>سوء تقدير حجم الفعالية</li>
-      </ul>
-    </div>
-  </div>
-
-  <h3 style="margin-top:16px;">أخطاء شائعة في إدارة الفعاليات</h3>
-  <div class="priority-med">
-    <span class="badge badge-orange">⭐⭐ مهم</span>
-    <div class="grid-3" style="margin-top:10px;">
-      <div class="card"><h4>❌ الاعتماد الكلي على الخبراء الخارجيين</h4><p style="font-size:13px;">ترك التخطيط كله لهم دون دعم يؤدي للفشل</p></div>
-      <div class="card"><h4>❌ الاعتقاد بأن الجميع قادر على الإدارة</h4><p style="font-size:13px;">إدارة الفعاليات تتطلب كفاءات ومهارات خاصة</p></div>
-      <div class="card"><h4>❌ تعدد الاجتماعات بلا مبرر</h4><p style="font-size:13px;">يؤدي لعدم انسجام الخطط لغياب التنسيق</p></div>
-      <div class="card"><h4>❌ انفصال المخططين عن المنفذين</h4><p style="font-size:13px;">ينتج خططاً غير واقعية وعدم تحديد المسؤولية</p></div>
-      <div class="card"><h4>❌ إهمال التجربة الفعلية</h4><p style="font-size:13px;">يجب إجراء تجربة فعلية قبل انعقاد الفعالية</p></div>
-      <div class="card"><h4>❌ نسب الإنجازات للقائد</h4><p style="font-size:13px;">يحبط بقية الأعضاء مع إهمال جانب التدريب</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== SKILLS ===== -->
-<div class="section">
-  <h2><span class="emoji-icon">🧑‍💼</span> منظم الفعاليات: المهارات الأساسية للنجاح</h2>
-  <div class="grid-3">
-    <div class="card"><h4>🗂️ المهارات التنظيمية</h4><p style="font-size:13px;">اهتمام بأدق التفاصيل، العمل ضمن الفريق، الالتزام بالجداول والميزانيات والمواعيد</p></div>
-    <div class="card"><h4>💬 مهارات الاتصال</h4><p style="font-size:13px;">القدرة على التفاعل وبناء علاقات في وقت قصير، مهارات قوية في الكتابة والاستماع</p></div>
-    <div class="card"><h4>🌐 شبكات العلاقات (Networking)</h4><p style="font-size:13px;">مفتاح تنظيم فعاليات ناجحة — شبكة واسعة من مزودي الخدمات</p></div>
-    <div class="card"><h4>💡 الإبداع والابتكار</h4><p style="font-size:13px;">الإبداع مهارة قابلة للتعلم، هو ما يُفرق بينك وبين الآخرين</p></div>
-    <div class="card"><h4>🛠️ حل المشكلات والتفاوض</h4><p style="font-size:13px;">حل أي مشكلة بهدوء واتخاذ قرارات بسرعة، التفاوض: استعداد + لباقة + ثقة</p></div>
-    <div class="card"><h4>👑 القيادة وحب العمل</h4><p style="font-size:13px;">قيادة الفريق بشكل صحيح، العمل بحب وشغف — هذه الصفات تنعكس على النتائج</p></div>
-  </div>
-</div>
-
-<!-- ===== MCQ ===== -->
-<div class="section" id="mcq">
-  <h2><span class="emoji-icon">✏️</span> أسئلة الاختيار من متعدد (MCQ)</h2>
-
-  <div class="mcq">
-    <div class="q">1. من أول من استخدم مصطلح الأهداف الذكية SMART؟</div>
-    <div class="opt wrong">أ) بيتر دراكر</div>
-    <div class="opt wrong">ب) هنري فايول</div>
-    <div class="opt correct">ج) الدكتور جورج دوران ✓</div>
-    <div class="opt wrong">د) هنري مينتزبرغ</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">2. كم تبلغ نسبة ميزانية الطوارئ في إعداد ميزانية الفعالية؟</div>
-    <div class="opt wrong">أ) 1% إلى 5%</div>
-    <div class="opt correct">ب) 5% إلى 25% ✓</div>
-    <div class="opt wrong">ج) 25% إلى 50%</div>
-    <div class="opt wrong">د) 10% فقط</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">3. وفق منهجية جامعة جورج واشنطن، كم عدد مراحل إدارة الفعاليات؟</div>
-    <div class="opt wrong">أ) 3 مراحل</div>
-    <div class="opt wrong">ب) 4 مراحل</div>
-    <div class="opt correct">ج) 5 مراحل ✓</div>
-    <div class="opt wrong">د) 6 مراحل</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">4. تأسست الهيئة العامة للترفيه في:</div>
-    <div class="opt wrong">أ) 12 مايو 2014</div>
-    <div class="opt correct">ب) 12 مايو 2016 ✓</div>
-    <div class="opt wrong">ج) 12 مايو 2018</div>
-    <div class="opt wrong">د) 12 مايو 2020</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">5. مهرجان الجنادرية للتراث والثقافة بدأ منذ عام:</div>
-    <div class="opt wrong">أ) 1395هـ/1975م</div>
-    <div class="opt wrong">ب) 1400هـ/1980م</div>
-    <div class="opt correct">ج) 1405هـ/1985م ✓</div>
-    <div class="opt wrong">د) 1410هـ/1990م</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">6. منطقة التحكم والسيطرة في الفعالية تُعدّ:</div>
-    <div class="opt wrong">أ) منطقة الاستقبال</div>
-    <div class="opt correct">ب) المركز العصبي للفعالية بأكملها ✓</div>
-    <div class="opt wrong">ج) منطقة التسجيل</div>
-    <div class="opt wrong">د) منطقة الضيافة</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">7. حسب قائمة التقييم المكونة من 46 عنصراً، الحصول على 35 عنصراً يعني:</div>
-    <div class="opt wrong">أ) جودة عالية</div>
-    <div class="opt correct">ب) جودة متوسطة ✓</div>
-    <div class="opt wrong">ج) أداء ضعيف</div>
-    <div class="opt wrong">د) أداء استثنائي</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">8. مخطط جانت (Gantt Chart) صممه:</div>
-    <div class="opt wrong">أ) فريدريك تايلور</div>
-    <div class="opt correct">ب) هنري جانت ✓</div>
-    <div class="opt wrong">ج) هنري فايول</div>
-    <div class="opt wrong">د) ماكس ويبر</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">9. الفعاليات الضخمة (Mega Events) تتميز بأن:</div>
-    <div class="opt wrong">أ) تكاليفها منخفضة جداً</div>
-    <div class="opt wrong">ب) تستهدف الجمهور المحلي فقط</div>
-    <div class="opt correct">ج) العائد على الاستثمار فيها غير واضح لكنها تخدم تطوير المجتمع ✓</div>
-    <div class="opt wrong">د) لا تحصل على تغطية إعلامية</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">10. تحويلت الهيئة العامة للرياضة إلى وزارة في:</div>
-    <div class="opt wrong">أ) 25 فبراير 2018</div>
-    <div class="opt correct">ب) 25 فبراير 2020 ✓</div>
-    <div class="opt wrong">ج) 25 فبراير 2022</div>
-    <div class="opt wrong">د) 25 يناير 2020</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">11. معيار دورات المياه في الفعاليات هو:</div>
-    <div class="opt wrong">أ) دورة مياه لكل 100 شخص</div>
-    <div class="opt correct">ب) دورة مياه لكل 50-75 شخصاً ✓</div>
-    <div class="opt wrong">ج) دورة مياه لكل 25 شخص</div>
-    <div class="opt wrong">د) دورة مياه لكل 200 شخص</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">12. الندوات في تصنيف الفعاليات تجمع:</div>
-    <div class="opt wrong">أ) أكثر من 1000 شخص لعدة أيام</div>
-    <div class="opt correct">ب) 12 إلى 150 شخصاً ليوم أو يومين ✓</div>
-    <div class="opt wrong">ج) أقل من 10 أشخاص</div>
-    <div class="opt wrong">د) 500 إلى 1000 شخص</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">13. موسم الرياض أُطلق في:</div>
-    <div class="opt wrong">أ) 11 أكتوبر 2017</div>
-    <div class="opt wrong">ب) 11 أكتوبر 2018</div>
-    <div class="opt correct">ج) 11 أكتوبر 2019 ✓</div>
-    <div class="opt wrong">د) 11 أكتوبر 2020</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">14. تقييم SWOT يُستخدم لـ:</div>
-    <div class="opt wrong">أ) وضع الميزانية فقط</div>
-    <div class="opt correct">ب) تعريف التحديات والمخاطر قبل البداية في تصميم الحدث ✓</div>
-    <div class="opt wrong">ج) تقييم أداء الموظفين فقط</div>
-    <div class="opt wrong">د) حساب عدد الزوار</div>
-  </div>
-
-  <div class="mcq">
-    <div class="q">15. مهرجان الملك عبدالعزيز للصقور دخل موسوعة غينيس عام 2018م بمشاركة:</div>
-    <div class="opt wrong">أ) 1000 صقر</div>
-    <div class="opt wrong">ب) 1500 صقر</div>
-    <div class="opt correct">ج) 1723 صقراً ✓</div>
-    <div class="opt wrong">د) 2000 صقر</div>
-  </div>
-</div>
-
-<!-- ===== TRUE/FALSE ===== -->
-<div class="section" id="tf">
-  <h2><span class="emoji-icon">✅</span> أسئلة صح وخطأ</h2>
-  <div class="grid-2">
-
-    <div class="tf">
-      <div class="q">1. إدارة الفعاليات عبارة عن عملية منظمة تشمل التخطيط والتنفيذ والتقييم.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">2. الفعاليات الضخمة (Mega Events) تتميز بأن عائدها على الاستثمار دائماً واضح.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: العائد على الاستثمار فيها غير واضح</p>
-    </div>
-
-    <div class="tf">
-      <div class="q">3. الأهداف الذكية SMART أول من استخدمها هو الدكتور جورج دوران.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">4. مرحلة التقييم ليست مهمة ويمكن إهمالها في الفعاليات الصغيرة.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: التقييم ليس خطوة روتينية بل يجب دمجه في تخطيط الفعالية من أول خطوة</p>
-    </div>
-
-    <div class="tf">
-      <div class="q">5. الهيئة العامة للترفيه تأسست في عام 2016م لتحقيق رؤية 2030.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">6. ميزانية التسويق في الفعاليات تُشكّل عادةً 30% من الميزانية الإجمالية.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: التسويق 40% والموقع 30% والمواد المطبوعة 30%</p>
-    </div>
-
-    <div class="tf">
-      <div class="q">7. مخطط جانت هو أداة تخطيط بصرية تُظهر المهام والأنشطة على محور زمني.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">8. منطقة التسجيل لا يمكن تحويلها إلى موقع إلكتروني.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: يُستحسن تحويلها إلى منطقة افتراضية كموقع إلكتروني أو تطبيق ذكي</p>
-    </div>
-
-    <div class="tf">
-      <div class="q">9. وزارة الرياضة تأسست في عام 1394هـ وكانت تُعرف سابقاً بالهيئة العامة للرياضة.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">10. تحليل PESTEL يركز فقط على العوامل الداخلية للفعالية.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: PESTEL يركز على العوامل الخارجية (السياسية، الاقتصادية، الاجتماعية، التكنولوجية، البيئية، القانونية)</p>
-    </div>
-
-    <div class="tf">
-      <div class="q">11. الفعاليات الرئيسية (Hallmark Events) تعكس ثقافة الدولة المستضيفة.</div>
-      <span class="ans ans-true">✅ صح</span>
-    </div>
-
-    <div class="tf">
-      <div class="q">12. الندوات تجمع عادة أكثر من 500 شخص لمدة أسبوع أو أكثر.</div>
-      <span class="ans ans-false">❌ خطأ</span>
-      <p style="font-size:13px; margin-top:6px; color:#666;">التصحيح: الندوات تجمع 12-150 شخصاً ليوم أو يومين</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ===== ESSAY ===== -->
-<div class="section" id="essay">
-  <h2><span class="emoji-icon">📝</span> أسئلة مقالية قصيرة مع إجابات نموذجية</h2>
-
-  <div class="essay">
-    <div class="q">1. عرّف إدارة الفعاليات وبيّن أهميتها في ضوء مفهوم Yeoman (2009).</div>
-    <div class="a">إدارة الفعاليات هي <strong>عملية منظمة</strong> يتم من خلالها اختيار الأشخاص المناسبين لإدارة الفعالية وإعدادهم الإعداد الجيد، ثم تكليفهم بتنظيم الفعالية من خلال التخطيط الجيد لها وتنفيذها لتحقيق الهدف المراد منها، وأخيراً تقييمها (Yeoman, 2009:15). وتكمن أهميتها في: روح التفرد والأصالة التي يستلهمها المنظمون وينقلونها للمشاركين، وتعزيز القدرات المهنية للموظفين، وحسن الضيافة والتنظيم. كما أن القاعدة الذهبية تُبنى على كفاءة الإدارة المنظمة (تخطيط + تنفيذ + مراجعة + إعادة فحص)، لأن عاقبة الفشل وخيمة إذ يشعر كل مشارك بتداعياته فوراً.</div>
-  </div>
-
-  <div class="essay">
-    <div class="q">2. اشرح مراحل إدارة الفعالية الخمس وفق منهجية جامعة جورج واشنطن.</div>
-    <div class="a"><strong>1. البحث:</strong> الاستكشاف وتحديد الجدوى والإجابة على الأسئلة الخمسة (Why, Who, What, Where, When) — أصعب المراحل وتتطلب جهداً ودراسة عميقة.<br><strong>2. التصميم:</strong> تحديد الرؤية والهوية البصرية وسمة الفعالية (الشعار، الألوان، الطباعة، الصور).<br><strong>3. التخطيط:</strong> إعداد الميزانية والهيكل التنظيمي والموارد البشرية والتسويق والجدول الزمني (مخطط جانت).<br><strong>4. التنفيذ:</strong> التنسيق الميداني وإدارة موقع الفعالية بمناطقه التسع وإدارة الحشود.<br><strong>5. التقييم:</strong> قياس النتائج كمياً ونوعياً وإعداد التقارير المتنوعة لأصحاب المصلحة. التقييم يُدمج من أول خطوة وليس في النهاية فقط.</div>
-  </div>
-
-  <div class="essay">
-    <div class="q">3. وضّح أنواع الفعاليات حسب الحجم والمستوى مع ذكر مثال لكل نوع.</div>
-    <div class="a"><strong>1. Mega Events (ضخمة):</strong> تستهدف السوق الدولي، تكاليف عالية جداً، تغطية إعالمية عالمية، مثال: كأس العالم، الأولمبياد.<br><strong>2. Hallmark Events (رئيسية):</strong> انعكاس لثقافة الدولة المستضيفة، مشاركون دوليون كثر، مثال: مهرجان الجنادرية، المهرجانات الوطنية الكبرى.<br><strong>3. Regional Events (إقليمية):</strong> للجذب السياحي الإقليمي، الجمهور المحلي أولاً، مثال: فعاليات السياحة الإقليمية والمهرجانات المحلية.<br><strong>4. Local Events (محلية):</strong> تخدم المجتمع المحلي فقط، لا تغطية دولية، مثال: البازارات وفعاليات التوعية وفعاليات الصيف داخل المدن.</div>
-  </div>
-
-  <div class="essay">
-    <div class="q">4. اشرح تحليل SWOT وكيف يُستخدم في إدارة الفعاليات.</div>
-    <div class="a">تحليل SWOT هو الدراسة التحليلية التي تُتيح تعريف التحديات والمخاطر قبل البدء في تصميم الحدث، وتُستخدم في جميع قطاعات الأعمال لتوقع المشكلات وخيارات الحلول. تتكون من:<br><strong>S (نقاط القوة):</strong> السمات الداخلية المميزة (شهرة الحدث، دعم الرعاة، موقع جذاب) → تعزيز الشراكات.<br><strong>W (نقاط الضعف):</strong> العوامل الداخلية المعيقة (نقص الموارد، قلة الخبرة) → وضع خطة طوارئ.<br><strong>O (الفرص):</strong> الظروف الخارجية المفيدة (زيادة الاهتمام بالرياضة) → البحث عن تمويل إضافي.<br><strong>T (التهديدات):</strong> العوامل الخارجية المعيقة (المنافسة، تقلبات الاقتصاد) → تحسين استقطاب المتطوعين.</div>
-  </div>
-
-  <div class="essay">
-    <div class="q">5. ما أهم مقومات النجاح في إدارة الفعاليات؟ وما أبرز معوقاته؟</div>
-    <div class="a"><strong>مقومات النجاح:</strong> (1) وضوح الهدف وتحديد الفئة المستهدفة، (2) وضع خطة علمية مدروسة وجدول زمني، (3) اختيار الوقت المناسب للمنظمين والمشاركين، (4) اختيار المكان المناسب وتجهيزه، (5) المرونة في التنفيذ والاستجابة للمتغيرات، (6) التنسيق الجيد بين الأعضاء، (7) خبرة المنظم وحسن اختيار الفريق، (8) التسويق الجيد وتوفير الراعي.<br><strong>أبرز المعوقات:</strong> (1) غياب المنظم المحترف، (2) صعوبة الحصول على التراخيص، (3) سوء اختيار الوقت والمكان، (4) عدم ملاءمة التسهيلات، (5) غياب التنسيق بين الأعضاء، (6) سوء تقدير حجم الفعالية.</div>
-  </div>
-</div>
-
-<!-- ===== TOP 20 ===== -->
-<div class="section" id="top20">
-  <h2><span class="emoji-icon">🏆</span> أهم 20 نقطة يجب حفظها</h2>
-  <ol class="points-list">
-    <li>إدارة الفعاليات = تخطيط + تنفيذ + تقييم (Yeoman, 2009:15)</li>
-    <li>مراحل إدارة الفعالية الخمس وفق جامعة جورج واشنطن: بحث ← تصميم ← تخطيط ← تنفيذ ← تقييم</li>
-    <li>الأسئلة الخمسة الكبرى في مرحلة البحث: Why, Who, What, Where, When</li>
-    <li>SMART Goals: أول من استخدمها <strong>الدكتور جورج دوران</strong> (Specific, Measurable, Attainable, Relevant, Timely)</li>
-    <li>تصنيفات الفعاليات الأربعة حسب الحجم: Mega / Hallmark / Regional / Local</li>
-    <li>تصنيفات الفعاليات حسب الزمن: متكررة (سنوياً/كل 4 سنوات) وغير متكررة (لمرة واحدة)</li>
-    <li>ميزانية الطوارئ تتراوح بين <strong>5% إلى 25%</strong> من التكاليف الفعلية</li>
-    <li>التوزيع المعياري للميزانية: تسويق 40% + موقع 30% + مواد مطبوعة 30%</li>
-    <li>مخطط جانت صممه <strong>هنري جانت</strong>: أداة تخطيط بصرية على محور زمني</li>
-    <li>الهيئة العامة للترفيه تأسست في <strong>12 مايو 2016م</strong> لتحقيق رؤية 2030</li>
-    <li>وزارة الرياضة تحولت من الهيئة العامة للرياضة بمرسوم ملكي في <strong>25 فبراير 2020م</strong></li>
-    <li>مهرجان الجنادرية بدأ منذ <strong>1405هـ/1985م</strong> وأُسندت إقامته لوزارة الثقافة 2019م</li>
-    <li>مهرجان الملك عبدالعزيز للصقور دخل موسوعة غينيس بمشاركة <strong>1723 صقراً</strong></li>
-    <li>المناطق الست الأساسية في الموقع: التحكم + الاستقبال + التسجيل + الضيافة + العرض + VIP</li>
-    <li>معيار دورات المياه: دورة لكل <strong>50-75 شخصاً</strong>، تفتيش كل 30 دقيقة</li>
-    <li>قائمة التقييم 46 عنصراً: 40-46 عالية / 30-40 متوسطة / أقل من 30 ضعيفة</li>
-    <li>إدارة الأزمات: تنبؤ + إجراءات وقائية + سيناريوهات المواجهة + توعية وتدريب</li>
-    <li>موسم الرياض أُطلق في <strong>11 أكتوبر 2019م</strong> وضم أكثر من 100 فعالية</li>
-    <li>SWOT: قوة وضعف (داخلية) + فرص وتهديدات (خارجية). PESTEL: عوامل خارجية</li>
-    <li>أخطر الأخطاء: انفصال المخططين عن المنفذين + إهمال التجربة الفعلية + الاعتماد الكلي على الخبراء الخارجيين</li>
-  </ol>
-</div>
-
-<!-- ===== TOP 10 QUESTIONS ===== -->
-<div class="section" id="top10">
-  <h2><span class="emoji-icon">🎯</span> أهم 10 أسئلة متوقعة في الاختبار مع الإجابات النموذجية</h2>
-  <div class="top-questions">
-
-    <div class="tq-item">
-      <div class="tq-q">عرّف إدارة الفعاليات ووضّح مراحلها وفق منهجية جامعة جورج واشنطن.</div>
-      <div class="tq-a">إدارة الفعاليات: عملية منظمة لاختيار الأشخاص وإعدادهم والتخطيط والتنفيذ والتقييم (Yeoman). مراحلها: (1) البحث (الجدوى والأسئلة الخمسة)، (2) التصميم (الرؤية والهوية البصرية)، (3) التخطيط (الميزانية، الموارد، مخطط جانت)، (4) التنفيذ (التنسيق الميداني وإدارة الموقع)، (5) التقييم (قياس النتائج وإعداد التقارير).</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">ما الفرق بين Mega Events و Hallmark Events و Regional Events؟</div>
-      <div class="tq-a">Mega Events: تستهدف السوق الدولي، تكاليف عالية جداً، عائد استثمار غير واضح، مثال: كأس العالم. Hallmark Events: تعكس ثقافة الدولة المستضيفة، جمهور محلي ودولي، مثال: مهرجان الجنادرية. Regional Events: تستهدف أقاليم معينة للجذب السياحي، مشاركون محليون أساساً، مثال: مهرجانات سياحية إقليمية.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">اشرح الأسئلة الخمسة الكبرى (5W's) في مرحلة البحث وأهميتها.</div>
-      <div class="tq-a">مرحلة البحث من أصعب المراحل وتتطلب الإجابة على: Why (لماذا نقيم الفعالية؟)، Who (من الجمهور المستهدف والرعاة والموردون؟)، What (ماذا تغطي الفعالية وما الرسائل؟)، Where (أين تُقام وهل المكان مجهز؟)، When (متى تقام وهل الوقت مناسب؟). الإجابة على هذه الأسئلة تحدد توجه الفعالية وتضمن جدواها.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">ما أهمية الفعاليات الرياضية والترويحية؟</div>
-      <div class="tq-a">وفق Allen & Otoole (2008): (1) دعم الاقتصاد الوطني وفق رؤية 2030، (2) تعزيز صورة الهيئة من خلال الفعاليات المهمة، (3) التعريف بالثقافة المحلية ونقلها لشعوب العالم، (4) تبادل الخبرات والأفكار بين المتخصصين ونشر الوعي والثقافة.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">اشرح الأهداف الذكية SMART وأول من استخدمها.</div>
-      <div class="tq-a">استخدمها أول مرة الدكتور جورج دوران. تتكون من: S (Specific-محدد): التصور الواضح للهدف. M (Measurable-قابل للقياس): قياس الهدف أو درجة الإنجاز. A (Attainable-قابل للتحقيق): أهداف دون مغالاة. R (Relevant-مرتبط): هل الهدف مهم للفعالية؟ T (Timely-محدد زمنياً): وقت بداية وانتهاء العمل.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">كيف تُعدّ ميزانية الفعالية؟ وما نسبة ميزانية الطوارئ؟</div>
-      <div class="tq-a">خطوات إعداد الميزانية: (1) الاطلاع على ميزانيات سابقة (تسويق 40%، موقع 30%، مواد 30%)، (2) الحصول على 3 عروض أسعار على الأقل من كل الإدارات، (3) تحديد المصروفات الفعلية والمتوقعة، (4) حصر الإيرادات (رعاة + تذاكر + تأجير أجنحة)، (5) إعداد ميزانية طوارئ من <strong>5% إلى 25%</strong> من التكاليف الفعلية للفعالية.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">ما المناطق الأساسية في تقسيم موقع الفعالية وما مهمة كل منها؟</div>
-      <div class="tq-a">المناطق الست الأساسية: (1) التحكم والسيطرة: المركز العصبي (اتصالات + مراقبة + طوارئ)، (2) الاستقبال: البوابة الأولى وفرز الزوار، (3) التسجيل: بطاقات الدخول والمواد التعريفية، (4) الضيافة: الطعام والشراب، (5) العرض والتقديم: المسرح الرئيسي، (6) كبار الشخصيات (VIP): خدمات متميزة وخصوصية. بالإضافة لـ: منطقة الزوار، دورات المياه، مواقف السيارات.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">اشرح تحليل SWOT وتحليل PESTEL وكيف يُطبَّقان في إدارة الفعاليات.</div>
-      <div class="tq-a">SWOT: أداة لتعريف التحديات والمخاطر. S=نقاط القوة الداخلية، W=نقاط الضعف الداخلية، O=الفرص الخارجية، T=التهديدات الخارجية. PESTEL: أداة لفهم العوامل الخارجية. P=سياسية (دعم القيادة السعودية أقوى العوامل)، E=اقتصادية (رؤية 2030)، S=اجتماعية (زيادة وعي الرياضة)، T=تكنولوجية (تطبيقات ذكية)، E=بيئية (الطقس الحار)، L=قانونية (التراخيص وحقوق الملكية).</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">ما مقومات نجاح إدارة الفعاليات ومعوقاتها؟</div>
-      <div class="tq-a">مقومات النجاح: وضوح الهدف، خطة علمية وجدول زمني، الوقت والمكان المناسبان، المرونة في التنفيذ، التنسيق الجيد، خبرة المنظم، التسويق الجيد، توفير الراعي. المعوقات: غياب المنظم المحترف، صعوبة التراخيص، سوء الوقت والمكان، عدم ملاءمة التسهيلات، غياب التنسيق، غياب التقنية، سوء تقدير الحجم.</div>
-    </div>
-
-    <div class="tq-item">
-      <div class="tq-q">اشرح دور الهيئة العامة للترفيه ووزارة الرياضة في تطوير قطاع الفعاليات بالمملكة.</div>
-      <div class="tq-a">وزارة الرياضة (1394هـ/1974م، أصبحت وزارة 2020): تعمل على زيادة ممارسة الرياضة، وصناعة رياضة تنافسية عالمياً، وتطوير المنشآت، وتعزيز الاستدامة المالية. الهيئة العامة للترفيه (2016م): توفير ترفيه شامل، دعم الاقتصاد، دعم المنشآت الصغيرة والمتوسطة، تحفيز القطاع الخاص. معاً يُشكّلان الركيزة التنظيمية لقطاع الفعاليات في إطار رؤية 2030.</div>
-    </div>
-
-  </div>
-</div>
-
-<div style="text-align:center; padding:20px; color:#888; font-size:13px;">
-  📚 مقرر إدارة الفعاليات الرياضية والترويحية · د. عبد الإله الصلوي · ماجستير تنفيذي 2026<br>
-  جامعة الملك سعود | asalawi@ksu.edu.sa<br><br>
-  <strong>إعداد: عبدالعزيز الفهد</strong>
-</div>
+</section>
+
+<footer style="background:var(--navy);color:var(--white);text-align:center;padding:1.5rem;margin-top:1rem;">
+  <p style="font-family:'Amiri',serif;font-size:1.1rem;color:var(--gold2);">إدارة الفعاليات الرياضية والترويحية</p>
+  <p style="font-size:.8rem;opacity:.65;margin-top:.4rem;">إعداد: عبدالعزيز الفهد | الماجستير التنفيذي في الإدارة الترويحية الرياضية 2026 | جامعة الملك سعود</p>
+  <p style="font-size:.75rem;opacity:.45;margin-top:.3rem;">د. عبد الإله الصلوي</p>
+</footer>
 
 </div><!-- end container -->
+
+<script>
+// ==============================
+// MCQ DATA
+// ==============================
+const mcqData = [
+  {q:"من وضع تعريف إدارة الفعاليات: 'عملية منظمة تشمل الاختيار والتخطيط والتنفيذ والتقييم'؟",opts:["Allen & Otoole","Yeoman 2009","د. جورج دوران","هنري جانت"],ans:1},
+  {q:"ما أصعب مراحل إدارة الفعالية وفق منهجية جامعة جورج واشنطن؟",opts:["التصميم","التنفيذ","البحث","التقييم"],ans:2},
+  {q:"ما التوزيع المعياري الصحيح لميزانية الفعالية؟",opts:["تسويق 30% + موقع 40% + مواد 30%","تسويق 40% + موقع 30% + مواد 30%","تسويق 50% + موقع 25% + مواد 25%","تسويق 33% + موقع 33% + مواد 34%"],ans:1},
+  {q:"متى تأسست الهيئة العامة للترفيه؟",opts:["12 مايو 2014م","30 رجب 1437هـ / 12 مايو 2016م","25 فبراير 2020م","11 أكتوبر 2019م"],ans:1},
+  {q:"في قائمة التحقق من 46 عنصراً، ما النتيجة التي تدل على مستوى 'عالٍ'؟",opts:["أكثر من 25","أكثر من 30","40 فأكثر","35 فأكثر"],ans:2},
+  {q:"كم عدد اللجان المطلوبة لتنظيم المؤتمرات والندوات؟",opts:["6 لجان","7 لجان","8 لجان","9 لجان"],ans:3},
+  {q:"ما المنطقة التي تُعدّ 'المركز العصبي' في تقسيم موقع الفعالية؟",opts:["منطقة الاستقبال","منطقة التحكم والسيطرة","منطقة VIP","منطقة التسجيل"],ans:1},
+  {q:"ما نسبة الفئة الشبابية في اللقاءات الشبابية؟",opts:["12-30 سنة","15-35 سنة","18-40 سنة","20-45 سنة"],ans:1},
+  {q:"كم عدد أشخاص يستوجب دورة مياه واحدة في الفعاليات؟",opts:["25-50 شخصاً","50-75 شخصاً","75-100 شخصاً","100-150 شخصاً"],ans:1},
+  {q:"ما العامل الأقوى تأثيراً في تحليل PESTEL للفعاليات في المملكة؟",opts:["الاقتصادي","البيئي","السياسي — دعم القيادة","القانوني"],ans:2},
+  {q:"ما عدد الفقرات الرئيسية في حفل الافتتاح الرسمي للبطولات؟",opts:["4 فقرات","5 فقرات","6 فقرات","7 فقرات"],ans:2},
+  {q:"من اخترع مخطط جانت (Gantt Chart)؟",opts:["جورج دوران","يومان","هنري جانت","ألن وأوتول"],ans:2},
+  {q:"ما أهمية الفعاليات وفق Allen & Otoole 2008؟",opts:["3 أهمية","4 أهمية","5 أهمية","6 أهمية"],ans:1},
+  {q:"متى أصبحت رئاسة الشباب وزارة للرياضة رسمياً؟",opts:["2019م","25 فبراير 2020م","2021م","1394هـ"],ans:1},
+  {q:"ما عدد مسارح مهرجان MDL Beast؟",opts:["3 مسارح","4 مسارح","5 مسارح","6 مسارح"],ans:2},
+  {q:"ما أبرز مهارة في منظم الفعاليات الناجح؟",opts:["الإبداع والابتكار","شبكات العلاقات (Networking)","مهارات الاتصال","القيادة"],ans:1},
+  {q:"في قائمة 65 عنصراً، ما الدرجة التي تمثل مستوى 'ممتاز'؟",opts:["48 فأكثر","53 فأكثر","58 فأكثر","63 فأكثر"],ans:2},
+  {q:"ما عدد الخطوات الأساسية في تنظيم الدورات الرياضية؟",opts:["5 خطوات","6 خطوات","7 خطوات","8 خطوات"],ans:2},
+  {q:"في دخول الوفود بحفل الافتتاح، أي الوفود يدخل أولاً؟",opts:["الأبجدي الأول","اللجنة التنظيمية","البلد المضيف","الدولة الضيفة الأولى"],ans:2},
+  {q:"كم عدد مراحل إجراءات استضافة الفعاليات الدولية؟",opts:["3 مراحل","4 مراحل","5 مراحل","6 مراحل"],ans:1},
+];
+
+// ==============================
+// TF DATA
+// ==============================
+const tfData = [
+  {q:"تأسست الهيئة العامة للترفيه في 12 مايو 2014م",ans:false,exp:"التصحيح: تأسست في 12 مايو 2016م (30 رجب 1437هـ)"},
+  {q:"مرحلة البحث هي أصعب مراحل إدارة الفعالية وفق جامعة جورج واشنطن",ans:true,exp:"صحيح — البحث هو الأصعب والأساس"},
+  {q:"التوزيع المعياري للميزانية هو: تسويق 30% + موقع 40% + مواد 30%",ans:false,exp:"التصحيح: تسويق 40% + موقع 30% + مواد 30%"},
+  {q:"قسم البطولة ورفع العلم يأتي بعد كلمات الترحيب الرسمية في حفل الافتتاح",ans:true,exp:"صحيح — هذا هو الترتيب الصحيح"},
+  {q:"الندوات تستوعب من 12 إلى 200 شخص",ans:false,exp:"التصحيح: 12-150 شخصاً فقط"},
+  {q:"هنري جانت هو مخترع مخطط جانت المستخدم في تخطيط الفعاليات",ans:true,exp:"صحيح تماماً"},
+  {q:"أصبحت رئاسة الشباب وزارة للرياضة في 25 فبراير 2021م",ans:false,exp:"التصحيح: 25 فبراير 2020م"},
+  {q:"تضم لجان الدورات الرياضية: لجنة المراسم والتتويج",ans:true,exp:"صحيح — هي إحدى اللجان الست"},
+  {q:"العامل القانوني هو الأقوى في PESTEL للمملكة العربية السعودية",ans:false,exp:"التصحيح: العامل السياسي هو الأقوى (دعم القيادة)"},
+  {q:"يجب فحص دورات المياه كل 30 دقيقة أثناء الفعاليات",ans:true,exp:"صحيح — هذا المعيار المحدد"},
+  {q:"دخل مهرجان الملك عبدالعزيز للصقور موسوعة غينيس عام 2018م بمشاركة 1723 صقراً",ans:true,exp:"صحيح — في منطقة ملهم"},
+  {q:"ميزانية الطوارئ تتراوح بين 10% و25% من الميزانية الكلية",ans:false,exp:"التصحيح: تتراوح بين 5% و25%"},
+  {q:"في قائمة 65 عنصراً، النتيجة 38 تعني مستوى 'مقبول'",ans:false,exp:"التصحيح: 38 تعني مستوى 'جيد'، المقبول 28 فأكثر"},
+  {q:"اللقاءات الشبابية تستهدف الفئة من 15 إلى 35 سنة",ans:true,exp:"صحيح تماماً"},
+  {q:"موسم الرياض انطلق في 11 أكتوبر 2019م",ans:true,exp:"صحيح"},
+];
+
+// ==============================
+// ESSAY DATA
+// ==============================
+const essayData = [
+  {
+    q:"عرّف إدارة الفعاليات مع ذكر المرجع، ثم اشرح مراحلها الخمس وفق منهجية جامعة جورج واشنطن.",
+    hint:"تعريف Yeoman 2009 + 5 مراحل: بحث، تصميم، تخطيط، تنفيذ، تقييم",
+    answer:"<strong>تعريف إدارة الفعاليات (Yeoman, 2009:15):</strong> هي عملية منظمة يتم من خلالها اختيار الأشخاص المناسبين لإدارة الفعالية وإعدادهم الإعداد الجيد، ومن ثم تكليفهم بتنظيم الفعالية من خلال التخطيط الجيد لها وتنفيذها لتحقيق الهدف المراد منها، وأخيراً تقييمها.<br><br><strong>المراحل الخمس وفق جامعة جورج واشنطن:</strong><br>1. <strong>البحث:</strong> أصعب المراحل — الإجابة على الأسئلة الخمسة (Why, Who, What, Where, When) وتحديد جدوى الفعالية.<br>2. <strong>التصميم:</strong> تحديد الرؤية، الهوية البصرية (الشعار، الألوان، الطباعة، الصور)، وسمة الفعالية في 5 خطوات.<br>3. <strong>التخطيط:</strong> إعداد الميزانية (تسويق 40% + موقع 30% + مواد 30% + طوارئ 5%-25%)، الموارد البشرية، مخطط جانت.<br>4. <strong>التنفيذ:</strong> التنسيق الميداني وإدارة الموقع بمناطقه التسع وإدارة الحشود.<br>5. <strong>التقييم:</strong> قياس النتائج كمياً ونوعياً وإعداد التقارير. التقييم يُدمج من أول خطوة وليس في النهاية فقط."
+  },
+  {
+    q:"اذكر 9 مقومات نجاح الفعالية، ثم ناقش 4 منها بالتفصيل.",
+    hint:"وضوح الهدف + خطة علمية + الوقت + المكان + المرونة + التنسيق + خبرة المنظم + التسويق + الراعي",
+    answer:"<strong>مقومات النجاح التسعة:</strong><br>1. وضوح الهدف من الفعالية وتحديد الفئة المستهدفة بصورة واضحة.<br>2. وضع خطة علمية مدروسة وإعداد الجدول الزمني لجميع النشاطات.<br>3. اختيار الوقت الملائم للفعالية لكل من المنظمين والمشاركين.<br>4. اختيار المكان المناسب وتجهيزه مادياً بطريقة ملائمة.<br>5. المرونة في التنفيذ والقدرة على الاستجابة للمتغيرات بسرعة.<br>6. التنسيق الجيد بين أعضاء إدارة الفعاليات والالتزام بالخطة.<br>7. خبرة المنظم وفريق العمل وحسن اختيار الأعضاء من ذوي الاختصاص.<br>8. التسويق للفعالية بصورة جيدة لكل من يمكن مساهمتهم في نجاحها.<br>9. توفير الراعي والأمان بمبدأ الشراكة.<br><br><strong>نقاش 4 مقومات:</strong><br>• <strong>وضوح الهدف:</strong> بدون هدف واضح لن يعرف الفريق ماذا يحقق ولا يستطيع الجمهور الارتباط بالفعالية.<br>• <strong>التخطيط العلمي:</strong> استخدام مخطط جانت يضمن سير المهام بترتيب منطقي ويمنع التداخل والتأخير.<br>• <strong>خبرة المنظم:</strong> القاعدة الذهبية تقول عاقبة الفشل وخيمة — الخبرة تحول التحديات إلى فرص.<br>• <strong>التسويق:</strong> المزيج الرباعي (المنتج + السعر + المكان + الترويج) يضمن وصول الرسالة للجمهور المناسب."
+  },
+  {
+    q:"اشرح تصنيفات الفعاليات حسب الحجم (Mega/Hallmark/Regional/Local) مع أمثلة لكل نوع.",
+    hint:"4 أنواع مع أمثلة: أولمبياد، كرنفال البندقية، إلخ",
+    answer:"<strong>Mega Events (الفعاليات الضخمة):</strong> تستهدف السوق الدولي، تجذب أعداداً كبيرة، تغطية إعلامية عالمية، تكاليف عالية جداً، والعائد على الاستثمار غير واضح لكنها تطور المجتمع. <em>أمثلة:</em> كأس العالم، الألعاب الأولمبية، المؤتمرات العالمية.<br><br><strong>Hallmark Events (الفعاليات الرئيسية):</strong> انعكاس لثقافة الدولة المستضيفة، جمهور محلي ودولي معاً، تغطية دولية كبيرة، فوائد عالية للدولة. <em>أمثلة:</em> مهرجان الجنادرية، كرنفال البندقية، سباق موناكو.<br><br><strong>Regional Events (الفعاليات الإقليمية):</strong> تستهدف أقاليم معينة، الجمهور المحلي أولاً، بعض التغطية الدولية، أرباح أقل من الكبرى. <em>أمثلة:</em> كأس الخليج العربي، الألعاب الآسيوية، المهرجانات الإقليمية.<br><br><strong>Local Events (الفعاليات المحلية):</strong> تخدم المجتمع المحلي، مشاركون محليون، تغطية محلية فقط، فوائدها للمدينة أو البلدة. <em>أمثلة:</em> البازارات، فعاليات التوعية، فعاليات الصيف داخل المدن."
+  },
+  {
+    q:"اشرح أهمية الفعاليات للمجتمع والاقتصاد وفق Allen & Otoole 2008، مع ربطها برؤية 2030.",
+    hint:"4 أهمية: الاقتصاد + صورة الجهة + الثقافة + تبادل الخبرات",
+    answer:"<strong>وفق Allen & Otoole, 2008:13 — 4 أهمية رئيسية:</strong><br><br>1. <strong>دعم الاقتصاد الوطني:</strong> تساهم في دعم الاقتصاد ودفع عجلة التنمية للوصول للمستوى العالمي في السياحة والفعاليات. ارتباطها برؤية 2030: تنويع مصادر الدخل وتقليل الاعتماد على النفط.<br><br>2. <strong>تعزيز صورة الهيئة:</strong> تساعد في تعزيز صورة الهيئة من خلال تنفيذ الفعاليات المهمة كالمؤتمرات والأحداث الرياضية. ارتباطها برؤية 2030: جعل المملكة وجهة عالمية للأحداث الكبرى.<br><br>3. <strong>التعريف بالثقافة المحلية:</strong> تساهم في نقل الثقافة المحلية لشعوب العالم مثل مهرجانات التراث. ارتباطها برؤية 2030: تعزيز الهوية الوطنية وزيادة السياحة الثقافية.<br><br>4. <strong>تبادل الخبرات والأفكار:</strong> فرصة للقاء المتخصصين وزيادة تبادل الأفكار والاستفادة من التجارب العلمية والعملية. ارتباطها برؤية 2030: بناء الكفاءات الوطنية ونقل المعرفة."
+  },
+  {
+    q:"ما الفرق بين التقييم الكمي والنوعي للفعاليات؟ واشرح قوائم التحقق (46 و65 عنصراً).",
+    hint:"كمي: أرقام. نوعي: جودة. قائمة 46: عالية 40+. قائمة 65: ممتاز 58+",
+    answer:"<strong>التقييم الكمي:</strong> يعتمد على الأرقام والإحصائيات. يشمل: هل حقق المبلغ المنفق الإيرادات المطلوبة؟ هل وصل عدد الزوار الفعليين الأعداد المتوقعة؟ هل حققت الفعالية زيادة في المتابعين على التواصل الاجتماعي؟<br><br><strong>التقييم النوعي:</strong> يعتمد على الجودة والتجربة. يشمل: ما مدى تفاعل الجمهور؟ كم نسبة الزوار الذين سيكررون الحضور؟ ما الانطباع العام؟<br><br><strong>ملاحظة مهمة:</strong> التقييم ليس خطوة روتينية بل يُدمج في التخطيط من أول خطوة.<br><br><strong>قائمة التحقق — 46 عنصراً:</strong><br>• 40-46 = مستوى عالٍ من الجودة ✅<br>• 30-40 = مستوى متوسط من الجودة ⚠️<br>• أقل من 30 = أداء ضعيف يجب البحث عن أسبابه ❌<br><br><strong>قائمة التحقق الشاملة — 65 عنصراً في 10 محاور:</strong><br>• 58-65 = جودة استثنائية (ممتاز)<br>• 48-57 = جودة عالية (جيد جداً)<br>• 38-47 = جودة متوسطة (جيد)<br>• 28-37 = أداء مقبول (يحتاج تحسين)<br>• أقل من 28 = أداء ضعيف (يستوجب مراجعة شاملة)"
+  },
+  {
+    q:"اذكر لجان المؤتمرات والندوات التسع وأبرز مهمة لكل لجنة.",
+    hint:"9 لجان: التنظيمية العليا + العلمية + السكرتارية + العلاقات + الإعلام + الاجتماعية + المالية + الفنية + الأمن",
+    answer:"<strong>لجان إدارة المؤتمرات والندوات التسع:</strong><br><br>1. <strong>اللجنة التنظيمية العليا:</strong> رسم السياسة العامة للمؤتمر والإشراف على جميع اللجان الفرعية واعتماد الميزانية والقرارات الاستراتيجية.<br>2. <strong>لجنة الإعداد العلمي:</strong> وضع المحاور العلمية، الدعوة لتقديم الأوراق البحثية، تحكيمها، وإعداد التقرير العلمي النهائي.<br>3. <strong>لجنة السكرتارية والتنسيق:</strong> المراسلات والدعوات الرسمية، دليل المؤتمر، التنسيق مع الفنادق، والترجمة الفورية.<br>4. <strong>لجنة العلاقات العامة والضيافة:</strong> الترويج للمؤتمر، استقبال المشاركين في المطارات والفنادق، بروتوكول كبار الشخصيات.<br>5. <strong>اللجنة الإعلامية والتسويقية:</strong> الخطة الإعلامية، البيانات الصحفية، إدارة التواصل الاجتماعي، والبث المباشر.<br>6. <strong>اللجنة الاجتماعية والترفيهية:</strong> البرامج الاجتماعية، الجولات السياحية، حفل الافتتاح والختام.<br>7. <strong>اللجنة المالية:</strong> الميزانية التفصيلية (+50 بنداً)، تحصيل رسوم التسجيل، صرف المستحقات، التقرير المالي الختامي.<br>8. <strong>اللجنة الفنية واللوجستية:</strong> الهوية البصرية، الصوت والإضاءة والشاشات، تجهيز القاعات واللوحات الإرشادية.<br>9. <strong>لجنة الأمن والسلامة:</strong> الخطة الأمنية، إجراءات الدخول، خطة الطوارئ والإخلاء، التنسيق مع الهلال الأحمر."
+  },
+  {
+    q:"اشرح خطوات حفل الافتتاح الرسمي للبطولات الرياضية بالترتيب الصحيح.",
+    hint:"6 فقرات: السلام الوطني + الوفود (المضيف أولاً) + القرآن + الكلمات + القسم + الإعلان",
+    answer:"<strong>فقرات حفل الافتتاح الرسمي للبطولة — 6 فقرات بالترتيب:</strong><br><br>1. <strong>عزف السلام الملكي:</strong> يُفتتح به الحفل رسمياً في بداية مراسم الافتتاح.<br>2. <strong>دخول طابور عرض الوفود:</strong> يدخل حامل علم البلد المضيف أولاً، ثم اللجنة التنظيمية، ثم الوفود حسب الترتيب الأبجدي. تشارك كل الوفود بالزي المعتمد لكل دولة خلف الشعار والعلم الرسمي.<br>3. <strong>تلاوة آيات من الذكر الحكيم:</strong> تعكس القيم الإسلامية والهوية الوطنية السعودية.<br>4. <strong>كلمات الترحيب الرسمية:</strong> كلمة رئيس الاتحاد المستضيف ثم كلمة رئيس اللجنة التنظيمية أو ممثلها في البطولة.<br>5. <strong>قسم البطولة ورفع العلم:</strong> يؤديه أحد لاعبي المنتخب السعودي المشارك، ثم رفع علم اللجنة التنظيمية في الاستاد.<br>6. <strong>إعلان الافتتاح الرسمي:</strong> إعلان افتتاح فعاليات البطولة من قبل راعي البطولة في الدولة المضيفة."
+  },
+  {
+    q:"ناقش أثر العوامل في PESTEL على الفعاليات في المملكة مع أمثلة.",
+    hint:"P=القيادة (الأقوى)، E=رؤية2030، S=المرأة، T=الرقمنة، E=الحر، L=التراخيص",
+    answer:"<strong>تحليل PESTEL للفعاليات في المملكة العربية السعودية:</strong><br><br><strong>P — السياسي (الأقوى تأثيراً):</strong> دعم القيادة السعودية للفعاليات الرياضية الكبرى يُعدّ من أقوى العوامل الداعمة. مثال: استضافة كأس العالم 2034 بدعم سياسي رسمي.<br><br><strong>E — الاقتصادي:</strong> رؤية 2030 تُشكّل محركاً اقتصادياً قوياً لاستضافة الفعاليات الدولية وتنويع مصادر الدخل. مثال: موسم الرياض ساهم في رفع الناتج المحلي.<br><br><strong>S — الاجتماعي:</strong> زيادة الوعي بأهمية الرياضة وتنامي مشاركة المرأة السعودية في الفعاليات الرياضية والترفيهية. مثال: السماح للمرأة بحضور المباريات وممارسة الرياضة.<br><br><strong>T — التكنولوجي:</strong> استخدام التقنية في التسويق والتسجيل والتطبيقات الذكية. مثال: نظام QR Code في موسم الرياض.<br><br><strong>E — البيئي:</strong> الطقس الحار في الرياض وجدة يُشكّل تحدياً خاصة للفعاليات الخارجية. مثال: إقامة الفعاليات في الشتاء أو توفير تكييف مركزي.<br><br><strong>L — القانوني:</strong> الالتزام بالتراخيص والتشريعات واشتراطات الترخيص من الجهات الحكومية السعودية. مثال: تراخيص الهيئة العامة للترفيه."
+  },
+  {
+    q:"اشرح مفهوم إدارة الحشود في الفعاليات ومبادئها الستة مع أمثلة تطبيقية.",
+    hint:"6 مبادئ: اعرف جمهورك، تخطيط، إبلاغ الجهات، المخاطر، الطوارئ، اللوحات والQR",
+    answer:"<strong>مفهوم إدارة الحشود:</strong> خطة تُستخدم في الفعاليات الكبيرة والضخمة. الناس يتصرفون بشكل مختلف عندما يكونون جزءاً من مجموعة؛ العواطف القوية كالفرح والغضب تنتشر بسرعة بين الحشود.<br><br><strong>المبادئ الستة:</strong><br><br>1. <strong>اعرف جمهور فعاليتك:</strong> جمهور كرة القدم ليس كزوار معرض كتاب. دراسة الفئة العمرية، مستوى الحماس، وجود جماهير متنافسة. مثال: في نهائيات دوري روشن تُفصل جماهير الفريقين بمداخل مختلفة.<br><br>2. <strong>التخطيط المسبق الشامل:</strong> خطة إدارة الحشود جزء أصيل من التخطيط من البداية وليس إضافة لاحقة. رسم خرائط مسارات الجمهور وتحديد نقاط الاختناق.<br><br>3. <strong>إبلاغ الجهات ذات العلاقة:</strong> التنسيق مع: إدارة المرور، الدفاع المدني، الهلال الأحمر، الأمن العام، البلدية.<br><br>4. <strong>إجراء تقييم شامل للمخاطر:</strong> تقييم مخاطر الحرائق، التزاحم، الطقس، الشجارات، الحوادث الطبية. مثال: في كأس العالم 2022 أُعدّت سيناريوهات إخلاء خلال 8 دقائق.<br><br>5. <strong>مراجعة وتحديث خطة الطوارئ:</strong> تدريب الفريق على السيناريوهات قبل يوم الفعالية.<br><br>6. <strong>اللوحات الإرشادية وتبسيط التسجيل:</strong> لوحات بأحجام كبيرة وألوان واضحة، خرائط تفاعلية، نظام QR Code، بوابات سريعة للمسجلين مسبقاً."
+  },
+  {
+    q:"اذكر الأخطاء الشائعة الستة في إدارة الفعاليات وكيف يمكن تجنب كل منها.",
+    hint:"الاعتماد على الخارج، الجهل بالتخصص، اجتماعات مفرطة، فصل التخطيط عن التنفيذ، إهمال التجربة، نسب الإنجاز للقائد",
+    answer:"<strong>الأخطاء الشائعة الستة وكيفية تجنبها:</strong><br><br>1. <strong>الاعتماد الكلي على الخبراء الخارجيين:</strong> ترك التخطيط كله للخارج دون دعم أو متابعة يؤدي للفشل. <em>التجنب:</em> بناء كفاءات داخلية ودعم الخبراء الخارجيين بفريق محلي متابع.<br><br>2. <strong>الاعتقاد بأن الجميع قادر على الإدارة:</strong> إدارة الفعاليات تتطلب مهارات وكفاءات خاصة. <em>التجنب:</em> توظيف متخصصين في إدارة الفعاليات وعدم الاعتماد على أشخاص غير مؤهلين.<br><br>3. <strong>تعدد الاجتماعات بلا مبرر:</strong> يؤدي لغياب التنسيق وعدم انسجام الخطط. <em>التجنب:</em> اجتماعات هادفة بجدول واضح ومحددة الوقت.<br><br>4. <strong>انفصال المخططين عن المنفذين:</strong> ينتج خططاً غير واقعية وعدم تحديد المسؤوليات. <em>التجنب:</em> دمج فرق التخطيط والتنفيذ في اجتماعات مشتركة منذ البداية.<br><br>5. <strong>إهمال التجربة الفعلية:</strong> عدم إجراء بروفة قبل الفعالية يكشف مشكلات متأخرة. <em>التجنب:</em> إجراء تجربة فعلية وزيارات ميدانية قبل يوم الفعالية.<br><br>6. <strong>نسب الإنجازات للقائد وإهمال التدريب:</strong> يُحبط الفريق ويضعف الأداء المستقبلي. <em>التجنب:</em> تقدير الفريق علناً وإدراج التدريب ضمن خطة كل فعالية."
+  },
+];
+
+// ==============================
+// CHEAT DATA
+// ==============================
+const cheatData = [
+  {title:"📅 تواريخ أساسية",items:["وزارة الرياضة: 1394هـ/1974م","وزارة (رسمياً): 25 فبراير 2020م","هيئة الترفيه: 12 مايو 2016م","الجنادرية: 1985م → وزارة الثقافة 2019م","موسم الرياض: 11 أكتوبر 2019م"]},
+  {title:"🔢 أرقام الحفظ",items:["دورات المياه: 1 لكل 50-75 شخص","فحص دورات المياه: كل 30 دقيقة","الندوات: 12-150 شخص / يوم-يومين","اللقاءات الشبابية: 15-35 سنة","Networking = مفتاح النجاح"]},
+  {title:"💰 الميزانية",items:["تسويق: 40%","موقع: 30%","مواد: 30%","طوارئ: 5%-25%","عروض أسعار: 3 على الأقل"]},
+  {title:"📊 قوائم التحقق",items:["46 عنصراً: 40+ عالية","46 عنصراً: 30-40 متوسطة","65 عنصراً: 58+ ممتاز","65 عنصراً: 48+ جيد جداً","65 عنصراً: 28+ مقبول"]},
+  {title:"🏛️ اللجان والهياكل",items:["لجان المؤتمرات: 9 لجان","خطوات الدورات الرياضية: 7 خطوات","فقرات حفل الافتتاح: 6 فقرات","مراحل الإدارة: 5 مراحل","مراحل الاستضافة الدولية: 4 مراحل"]},
+  {title:"⭐ أهمية وقطاعات",items:["أهمية الفعاليات (Allen & Otoole): 4","أهداف وزارة الرياضة: 4","أدوار هيئة الترفيه: 5","مقومات النجاح: 9","معوقات النجاح: 9","الأخطاء الشائعة: 6"]},
+  {title:"🎯 5W's البحث",items:["Why — لماذا؟","Who — من؟","What — ماذا؟","Where — أين؟","When — متى؟"]},
+  {title:"📈 SMART (د. جورج دوران)",items:["S = Specific (محدد)","M = Measurable (قابل للقياس)","A = Attainable (قابل للتحقيق)","R = Relevant (ذو صلة)","T = Timely (محدد بوقت)"]},
+  {title:"🔍 PESTEL",items:["P = سياسي (الأقوى ✓)","E = اقتصادي (رؤية 2030)","S = اجتماعي (مشاركة المرأة)","T = تكنولوجي","E = بيئي (الحر)","L = قانوني (التراخيص)"]},
+  {title:"🌟 MDL Beast",items:["أكثر من 400,000 زائر","3 أيام","5 مسارح","أكثر من 100 فنان","2019م"]},
+  {title:"🗓️ ترتيب حفل الافتتاح",items:["1. السلام الوطني","2. دخول الوفود (المضيف أولاً)","3. تلاوة القرآن","4. كلمات الترحيب","5. قسم البطولة","6. إعلان الافتتاح"]},
+  {title:"🚨 إدارة الأزمات",items:["1. التنبؤ بالمخاطر","2. الإجراءات الوقائية","3. سيناريوهات المواجهة","4. التوعية والتدريب"]},
+];
+
+// ==============================
+// RENDER FUNCTIONS
+// ==============================
+let mcqAnswered = {};
+let tfAnswered = {};
+let score = 0;
+let totalAnswered = 0;
+
+function renderMCQ(){
+  const c = document.getElementById('mcq-container');
+  c.innerHTML = mcqData.map((q,i)=>`
+    <div class="mcq-item" id="mcq-${i}">
+      <div class="mcq-q">${i+1}. ${q.q}</div>
+      <div class="mcq-options">
+        ${q.opts.map((o,j)=>`<div class="mcq-opt" onclick="answerMCQ(${i},${j})" id="mcq-${i}-${j}">${String.fromCharCode(0x200F)+['أ','ب','ج','د'][j]}. ${o}</div>`).join('')}
+      </div>
+      <div class="mcq-reveal" id="mcq-reveal-${i}">✅ الإجابة الصحيحة: ${['أ','ب','ج','د'][q.ans]}. ${q.opts[q.ans]}</div>
+    </div>
+  `).join('');
+}
+
+function answerMCQ(qi,chosen){
+  if(mcqAnswered[qi] !== undefined) return;
+  mcqAnswered[qi] = chosen;
+  const q = mcqData[qi];
+  for(let j=0;j<q.opts.length;j++){
+    const el = document.getElementById(`mcq-${qi}-${j}`);
+    el.style.pointerEvents='none';
+    if(j===q.ans) el.classList.add('correct');
+    else if(j===chosen) el.classList.add('wrong');
+  }
+  document.getElementById(`mcq-reveal-${qi}`).classList.add('show');
+  totalAnswered++;
+  if(chosen===q.ans) score++;
+  document.getElementById('score-display').textContent = `النتيجة: ${score}/${totalAnswered}`;
+}
+
+function showAllAnswers(){
+  mcqData.forEach((_,i)=>{
+    if(mcqAnswered[i]!==undefined) return;
+    const q=mcqData[i];
+    document.getElementById(`mcq-${i}-${q.ans}`).classList.add('reveal-correct');
+    for(let j=0;j<q.opts.length;j++) document.getElementById(`mcq-${i}-${j}`).style.pointerEvents='none';
+    document.getElementById(`mcq-reveal-${i}`).classList.add('show');
+  });
+}
+
+function resetMCQ(){
+  mcqAnswered={};score=0;totalAnswered=0;
+  document.getElementById('score-display').textContent='';
+  renderMCQ();
+}
+
+function renderTF(){
+  const c=document.getElementById('tf-container');
+  c.innerHTML=tfData.map((q,i)=>`
+    <div class="tf-item" id="tf-item-${i}">
+      <div class="tf-q">${i+1}. ${q.q}</div>
+      <div class="tf-btns">
+        <button class="tf-btn t" onclick="answerTF(${i},true)">✅ صح</button>
+        <button class="tf-btn f" onclick="answerTF(${i},false)">❌ خطأ</button>
+      </div>
+      <div class="tf-result" id="tf-result-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function answerTF(i,chosen){
+  if(tfAnswered[i]!==undefined) return;
+  tfAnswered[i]=chosen;
+  const q=tfData[i];
+  const res=document.getElementById(`tf-result-${i}`);
+  const correct=chosen===q.ans;
+  res.innerHTML=correct?`<span style="color:var(--accent2)">✅ إجابتك صحيحة!</span> — ${q.exp}`:`<span style="color:var(--red)">❌ إجابتك خاطئة.</span> ${q.exp}`;
+  res.classList.add('show');
+  document.getElementById(`tf-item-${i}`).querySelectorAll('.tf-btn').forEach(b=>b.style.opacity='.5');
+}
+
+function showAllTF(){
+  tfData.forEach((_,i)=>{
+    if(tfAnswered[i]!==undefined) return;
+    answerTF(i,null);
+    const q=tfData[i];
+    const res=document.getElementById(`tf-result-${i}`);
+    res.innerHTML=`<span style="color:var(--navy)">📌 الإجابة:</span> ${q.ans?'صح ✅':'خطأ ❌'} — ${q.exp}`;
+    res.classList.add('show');
+  });
+}
+
+function renderEssay(){
+  const c=document.getElementById('essay-container');
+  c.innerHTML=essayData.map((q,i)=>`
+    <div style="background:#f8faff;border-radius:10px;padding:1rem 1.3rem;margin-bottom:.8rem;border-right:4px solid #1a5276;">
+      <p style="font-size:.92rem;font-weight:600;color:#1a5276;margin-bottom:.8rem;">${i+1}. ${q.q}</p>
+      <details style="cursor:pointer;">
+        <summary style="display:inline-flex;align-items:center;gap:.5rem;background:#1a5276;color:white;padding:.4rem 1rem;border-radius:8px;font-size:.83rem;font-weight:600;list-style:none;cursor:pointer;user-select:none;">
+          <span>📝 اضغط لعرض الإجابة النموذجية</span>
+        </summary>
+        <div style="margin-top:.8rem;padding:1rem 1.2rem;background:white;border-radius:8px;border:1px solid #d0e2f7;">
+          <div style="font-size:.85rem;color:#333;line-height:1.9;">${q.answer}</div>
+          <div style="margin-top:.7rem;padding:.5rem .8rem;background:#f0f7ff;border-radius:6px;border-right:3px solid #2e86ab;">
+            <span style="font-size:.78rem;color:#2e86ab;font-weight:600;">💡 نقاط الحفظ السريع: </span>
+            <span style="font-size:.78rem;color:#555;">${q.hint}</span>
+          </div>
+        </div>
+      </details>
+    </div>
+  `).join('');
+}
+
+function renderCheat(){
+  const c=document.getElementById('cheat-container');
+  c.innerHTML=cheatData.map(card=>`
+    <div class="cheat-card">
+      <h4>${card.title}</h4>
+      <ul>${card.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>
+  `).join('');
+}
+
+// INIT
+renderMCQ();
+renderTF();
+renderEssay();
+renderCheat();
+</script>
 </body>
 </html>
